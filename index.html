@@ -4,12 +4,18 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta
+			name="description"
+			content="Horacio Come is an Android engineer with 7+ years of experience building Kotlin mobile products and backend systems that serve real-world users."
+		>
 
-		<title>Horácio Comé | Software Engineer</title>
+		<title>Horácio Comé | Android Engineer</title>
 
 		<link rel="icon" href="android-brands-solid.ico" type="image/png" />
 
-		<link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300,400,500,700" rel="stylesheet">
 		<link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/styles.css">
@@ -24,19 +30,165 @@
 		<!-- <link rel="stylesheet" href="css/themes/yellow-black.css"> -->
 	</head>
 	<body>
-		<main>
-			<div class="intro">>_ hello, I'm Horácio!</div>
-			<div class="tagline">👨🏿‍💻 I am building scalable Kotlin solutions that power millions 😉</div>
-			<!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
-			<div class="icons-social">
-				<a target="_blank" href="https://github.com/horaciocome1"><i class="fab fa-github"></i></a>
-				<a target="_blank" href="https://play.google.com/store/apps/dev?id=8639907477820496824"><i class="fab fa-google-play"></i></a>
-				<a target="_blank" href="https://apps.apple.com/pt/developer/horacio-flavio-come-junior/id1748627513"><i class="fab fa-app-store-ios"></i></a>
-				<!-- <a target="_blank" href="https://twitter.com/horaciocome1"><i class="fab fa-twitter"></i></a> -->
-				<!-- <a target="_blank" href="https://stackoverflow.com/story/horaciocome1"><i class="fab fa-stack-overflow"></i></a> -->
-				<a target="_blank" href="https://www.linkedin.com/in/horaciocome1"><i class="fab fa-linkedin"></i></a>
-				<a target="_blank" href="https://horaciocome1.medium.com"><i class="fab fa-medium"></i></a>
-			</div>
+		<main class="page">
+			<header class="site-header">
+				<a class="site-name" href="#top">Horácio Comé</a>
+				<nav class="site-nav" aria-label="Primary">
+					<a href="#projects">Projects</a>
+					<a href="#about">About</a>
+					<a href="#contact">Contact</a>
+				</nav>
+			</header>
+
+			<section class="hero section" id="top">
+				<div class="hero-copy">
+					<p class="eyebrow">>_ Hello, I'm Horácio.</p>
+					<h1>Android engineer building Kotlin products people actually use.</h1>
+					<p class="lead">
+						For more than seven years, I have shipped mobile apps professionally across fintech,
+						retail intelligence, and product teams. These days I am also building backend systems
+						for Markado, which gives me a full product view from client experience to operational
+						infrastructure.
+					</p>
+					<div class="cta-group">
+						<a class="button button-primary" href="mailto:mail@horacioco.me">Email me</a>
+						<a class="button button-secondary" href="#projects">View projects</a>
+					</div>
+				</div>
+				<aside class="hero-panel" aria-label="Current focus">
+					<p class="panel-kicker">Current focus</p>
+					<ul class="hero-list">
+						<li>Native Android apps with Kotlin</li>
+						<li>Migration work from cross-platform foundations to maintainable native code</li>
+						<li>Backend architecture and integrations for Markado</li>
+					</ul>
+					<div class="hero-meta">
+						<span>7+ years in Android</span>
+						<span>Backend since 2024</span>
+					</div>
+				</aside>
+			</section>
+
+			<section class="section" id="projects">
+				<div class="section-heading">
+					<p class="section-kicker">Featured work</p>
+					<h2>Projects with real-world scale.</h2>
+					<p>
+						I care about products that have to stay dependable in the real world, whether that
+						means money movement, enterprise operations, or scheduling systems with a lot of moving
+						parts.
+					</p>
+				</div>
+				<div class="project-grid">
+					<article class="project-card">
+						<p class="project-type">Startup / Backend</p>
+						<h3>Markado scheduling backend</h3>
+						<p>
+							Built the backend powering Markado's scheduling and event workflows. The platform
+							handles appointments, guest management, invite delivery, check-in flows, payments,
+							and Google Calendar synchronization for service businesses and event organizers.
+						</p>
+						<p class="project-stack">
+							Ktor, PostgreSQL, Exposed, Stripe, Twilio, SendGrid, Google Calendar
+						</p>
+						<a
+							class="project-link"
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://markado.pt"
+						>Visit markado.pt</a>
+					</article>
+					<article class="project-card">
+						<p class="project-type">Current work / Android</p>
+						<h3>TrueVUE Cloud migration</h3>
+						<p>
+							Leading the migration of Sensormatic's TrueVUE Cloud app from a cross-platform
+							foundation to Kotlin Android, with a focus on native control, maintainability, and
+							a stronger long-term product base.
+						</p>
+						<p class="project-stack">Kotlin, Android, app migration, native architecture</p>
+						<a
+							class="project-link"
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://www.sensormatic.com/landing/truevue-incloud"
+						>Learn about TrueVUE Cloud</a>
+					</article>
+					<article class="project-card">
+						<p class="project-type">Previous work / Fintech</p>
+						<h3>M-Pesa Android apps across five markets</h3>
+						<p>
+							Worked on Android experiences for M-Pesa in Mozambique, Lesotho, Tanzania, DRC,
+							and Ghana, contributing to mobile money products that operate at national scale and
+							need to be dependable every day.
+						</p>
+						<p class="project-stack">Android, fintech, multi-market delivery</p>
+						<a
+							class="project-link"
+							target="_blank"
+							rel="noopener noreferrer"
+							href="https://en.wikipedia.org/wiki/M-Pesa"
+						>About M-Pesa</a>
+					</article>
+				</div>
+			</section>
+
+			<section class="section" id="about">
+				<div class="section-heading">
+					<p class="section-kicker">About</p>
+					<h2>Kotlin-first, product-minded, and curious about hard problems.</h2>
+				</div>
+				<div class="about-grid">
+					<div>
+						<p>
+							I'm a dedicated engineer driven by a love for Kotlin and by the challenge of turning
+							ambitious ideas into useful products. I enjoy solving messy problems, simplifying
+							systems, and shipping software that genuinely helps people.
+						</p>
+						<p>
+							What keeps me motivated is learning fast, pushing into unfamiliar territory, and
+							bringing a fresh perspective to every team and product I work on. Android is still my
+							main craft, but building Markado's backend pushed me to think more deeply about the
+							whole product from client experience to operations.
+						</p>
+					</div>
+					<div class="about-card">
+						<h3>What I bring</h3>
+						<ul class="bullet-list">
+							<li>More than seven years of professional Android delivery</li>
+							<li>A practical engineering mindset shaped by real products and real users</li>
+							<li>Growing backend experience from building startup systems end to end</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="section" id="contact">
+				<div class="section-heading">
+					<p class="section-kicker">Contact</p>
+					<h2>Let's build something useful.</h2>
+					<p>
+						If you're looking for Android expertise, Kotlin product engineering, or someone who
+						likes owning problems end to end, send me a note.
+					</p>
+				</div>
+				<div class="contact-panel">
+					<a class="button button-primary" href="mailto:mail@horacioco.me">mail@horacioco.me</a>
+					<p>Or find me around the internet.</p>
+					<div class="icons-social" aria-label="Social links">
+						<a aria-label="Email" href="mailto:mail@horacioco.me"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+						<a aria-label="GitHub" target="_blank" rel="noopener noreferrer" href="https://github.com/horaciocome1"><i class="fab fa-github" aria-hidden="true"></i></a>
+						<a aria-label="Google Play" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/dev?id=8639907477820496824"><i class="fab fa-google-play" aria-hidden="true"></i></a>
+						<a aria-label="App Store" target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/pt/developer/horacio-flavio-come-junior/id1748627513"><i class="fab fa-app-store-ios" aria-hidden="true"></i></a>
+						<a aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/horaciocome1"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+						<a aria-label="Medium" target="_blank" rel="noopener noreferrer" href="https://horaciocome1.medium.com"><i class="fab fa-medium" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</section>
+
+			<footer class="site-footer">
+				<p>Android engineer with 7+ years of experience, now also building backend systems at Markado.</p>
+			</footer>
 		</main>
 	</body>
 </html>
