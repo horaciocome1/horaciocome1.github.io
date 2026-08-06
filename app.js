@@ -9,6 +9,8 @@ const railProgress = document.querySelector('[data-rail-progress]');
 const windowBar = document.querySelector('.window-bar');
 const sessionBar = document.querySelector('.session-bar');
 const windowTitle = document.querySelector('.window-title');
+const themeToggle = document.querySelector('[data-theme-toggle]');
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const shortcutOverlay = document.querySelector('#shortcut-overlay');
 const commandPalette = document.querySelector('#command-palette');
 const paletteInput = document.querySelector('#palette-input');
@@ -16,6 +18,11 @@ const paletteList = document.querySelector('#palette-list');
 const toastStack = document.querySelector('#toast-stack');
 
 const currentYear = new Date().getFullYear();
+const THEME_STORAGE_KEY = 'portfolio-theme';
+const THEME_COLORS = {
+	dark: '#050505',
+	light: '#f4efe6',
+};
 
 experienceNodes.forEach((node) => {
 	const since = Number(node.dataset.experienceSince);
@@ -56,6 +63,63 @@ const showToast = (message) => {
 		window.setTimeout(() => toast.remove(), 220);
 	}, 2200);
 };
+
+const readStoredTheme = () => {
+	try {
+		const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
+		return storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : null;
+	} catch {
+		return null;
+	}
+};
+
+const writeStoredTheme = (theme) => {
+	try {
+		window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+	} catch {
+		// Ignore storage access failures and keep the UI working.
+	}
+};
+
+const getPreferredTheme = () => {
+	if (typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: light)').matches) {
+		return 'light';
+	}
+
+	return 'dark';
+};
+
+const applyTheme = (theme, { persist = true, announce = false } = {}) => {
+	const normalizedTheme = theme === 'light' ? 'light' : 'dark';
+	const isLightTheme = normalizedTheme === 'light';
+
+	document.documentElement.dataset.theme = normalizedTheme;
+	document.documentElement.style.colorScheme = normalizedTheme;
+	themeToggle?.setAttribute('aria-checked', isLightTheme ? 'true' : 'false');
+	themeToggle?.setAttribute('title', `Switch to ${isLightTheme ? 'dark' : 'light'} mode`);
+	themeColorMeta?.setAttribute('content', THEME_COLORS[normalizedTheme]);
+
+	if (persist) {
+		writeStoredTheme(normalizedTheme);
+	}
+
+	if (announce) {
+		showToast(`${normalizedTheme} mode enabled`);
+	}
+};
+
+const toggleTheme = () => {
+	const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+	applyTheme(nextTheme, { announce: true });
+};
+
+const initialTheme = readStoredTheme() ?? document.documentElement.dataset.theme;
+
+applyTheme(initialTheme === 'light' || initialTheme === 'dark' ? initialTheme : getPreferredTheme(), {
+	persist: false,
+});
+
+themeToggle?.addEventListener('click', toggleTheme);
 
 const openExternal = (url, label) => {
 	showToast(`opened ${label}`);
@@ -290,6 +354,8 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		{ label: 'Jump to quick facts', aliases: 'profile facts 3', action: () => scrollToCard(2) },
 		{ label: 'Jump to outcomes', aliases: 'outcomes results 4', action: () => scrollToCard(3) },
 		{ label: 'Jump to work style', aliases: 'style notes 5', action: () => scrollToCard(4) },
+		{ label: 'Switch to dark mode', aliases: 'theme dark night', action: () => applyTheme('dark', { announce: true }) },
+		{ label: 'Switch to light mode', aliases: 'theme light day', action: () => applyTheme('light', { announce: true }) },
 		{ label: 'Next card', aliases: 'next forward', action: () => scrollToCard(activeIndex + 1) },
 		{ label: 'Previous card', aliases: 'prev previous back', action: () => scrollToCard(activeIndex - 1) },
 		{ label: 'Open email', aliases: 'email mail contact', action: () => { showToast('opening email'); window.location.href = 'mailto:mail@horacioco.me'; } },

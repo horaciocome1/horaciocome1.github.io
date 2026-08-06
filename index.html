@@ -11,6 +11,35 @@
 		<meta name="author" content="Horácio Comé">
 		<link rel="canonical" href="https://horacioco.me/">
 		<meta name="theme-color" content="#050505">
+		<script>
+			(() => {
+				const themeColors = {
+					dark: '#050505',
+					light: '#f4efe6',
+				};
+				let storedTheme = null;
+
+				try {
+					const savedTheme = window.localStorage.getItem('portfolio-theme');
+					if (savedTheme === 'light' || savedTheme === 'dark') {
+						storedTheme = savedTheme;
+					}
+				} catch {
+					// Ignore storage access issues and fall back to the system theme.
+				}
+
+				const prefersLightTheme =
+					typeof window.matchMedia === 'function' &&
+					window.matchMedia('(prefers-color-scheme: light)').matches;
+				const theme = storedTheme ?? (prefersLightTheme ? 'light' : 'dark');
+
+				document.documentElement.dataset.theme = theme;
+				document.documentElement.style.colorScheme = theme;
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', themeColors[theme]);
+			})();
+		</script>
 
 		<meta property="og:title" content="Horácio Comé | Android Engineer">
 		<meta
@@ -51,7 +80,16 @@
 						<span></span>
 					</div>
 					<p class="window-title">~/horacio/portfolio</p>
-					<p class="window-meta">stable build</p>
+					<div class="window-actions">
+						<p class="window-meta">stable build</p>
+						<button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+							<i class="fas fa-moon theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></i>
+							<span class="theme-toggle-track" aria-hidden="true">
+								<span class="theme-toggle-thumb"></span>
+							</span>
+							<i class="fas fa-sun theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></i>
+						</button>
+					</div>
 				</header>
 
 				<div class="workspace-body">
