@@ -56,11 +56,17 @@
 
 				<div class="workspace-body">
 					<section class="session-bar" aria-label="Terminal session overview">
-						<div class="session-chip"><span>session</span><strong>portfolio-shell</strong></div>
-						<div class="session-chip"><span>role</span><strong>android engineer</strong></div>
-						<div class="session-chip"><span>focus</span><strong>native + backend</strong></div>
-						<div class="session-chip"><span>state</span><strong>open to product work</strong></div>
+						<div class="session-chip is-online"><span>mobile</span><strong>online</strong></div>
+						<div class="session-chip is-online"><span>server</span><strong>online</strong></div>
+						<div class="session-chip is-active"><span>kotlin</span><strong>active</strong></div>
+						<div class="session-chip is-open"><span>product-fit</span><strong>open</strong></div>
 					</section>
+
+					<div class="rail-nav" aria-label="Slide navigation">
+						<button class="rail-button" type="button" data-rail-direction="prev" aria-label="Previous card">&larr;</button>
+						<div class="rail-progress" data-rail-progress aria-label="Slide progress"></div>
+						<button class="rail-button" type="button" data-rail-direction="next" aria-label="Next card">&rarr;</button>
+					</div>
 
 					<div class="workspace-grid">
 					<aside class="sidebar-stack" aria-label="Project file tree navigation">
@@ -84,12 +90,8 @@
 
 					<div class="main-stack">
 						<div class="card-rail-shell">
-							<div class="rail-controls" aria-label="Card navigation controls">
-								<button class="rail-button" type="button" data-rail-direction="prev" aria-label="Previous card">&larr;</button>
-								<button class="rail-button" type="button" data-rail-direction="next" aria-label="Next card">&rarr;</button>
-							</div>
 							<div class="card-rail" data-card-rail>
-								<section class="terminal-panel rail-card intro-panel" id="intro" data-rail-card aria-labelledby="intro-title">
+								<section class="terminal-panel rail-card intro-panel" id="intro" data-rail-card data-card-label="whoami" aria-labelledby="intro-title">
 									<p class="command-line"><span class="prompt">$</span> whoami</p>
 									<div class="command-output">
 										<p class="eyebrow">ANDROID ENGINEER</p>
@@ -106,7 +108,7 @@
 									</div>
 								</section>
 
-								<section class="terminal-panel rail-card work-panel" id="work" data-rail-card aria-labelledby="work-title">
+								<section class="terminal-panel rail-card work-panel" id="work" data-rail-card data-card-label="selected-work/" aria-labelledby="work-title">
 									<p class="command-line"><span class="prompt">$</span> ls selected-work/</p>
 									<div class="command-output">
 										<h2 id="work-title">Selected Work</h2>
@@ -117,7 +119,7 @@
 											<h3>kumbase-platform.kt</h3>
 											<a target="_blank" rel="noopener noreferrer" href="https://kumbase.com">kumbase.com</a>
 										</div>
-										<p class="work-meta">[saas] [postgresql] [backups] [security]</p>
+										<div class="impact-badges"><span>saas</span><span>postgresql</span><span>backups</span><span>security-first</span></div>
 										<p>
 											Built Kumbase, a security-first SaaS for automated PostgreSQL backups with encrypted
 											artifact storage and portable restore downloads. The work centered on dependable
@@ -131,7 +133,7 @@
 											<h3>markado-backend.kt</h3>
 											<a target="_blank" rel="noopener noreferrer" href="https://markado.pt">markado.pt</a>
 										</div>
-										<p class="work-meta">[backend] [scheduling] [payments] [integrations]</p>
+										<div class="impact-badges"><span>backend</span><span>scheduling</span><span>payments</span><span>integrations</span></div>
 										<p>
 											Built the backend powering scheduling, guest flows, invites, check-in, payments,
 											and calendar sync. The job was not just APIs, it was making the whole workflow hold
@@ -144,7 +146,7 @@
 											<h3>truevue-migration.md</h3>
 											<a target="_blank" rel="noopener noreferrer" href="https://www.sensormatic.com/landing/truevue-incloud">sensormatic.com</a>
 										</div>
-										<p class="work-meta">[android] [migration] [native-architecture]</p>
+										<div class="impact-badges"><span>android</span><span>migration</span><span>native architecture</span><span>RAIN RFID</span></div>
 										<p>
 											Leading migration work from a cross-platform base to Kotlin Android with an eye on
 											maintainability, better native control, and a healthier long-term foundation for the
@@ -157,7 +159,7 @@
 											<h3>mpesa-multi-market.txt</h3>
 											<a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/M-Pesa">about M-Pesa</a>
 										</div>
-										<p class="work-meta">[fintech] [android] [multi-market] [reliability]</p>
+										<div class="impact-badges"><span>fintech</span><span>android</span><span>5M users</span><span>reliability</span></div>
 										<p>
 											Worked on Android experiences for Mozambique, Lesotho, Tanzania, DRC, and Ghana,
 											shipping for mobile money products where reliability matters every day, not just at
@@ -169,7 +171,7 @@
 									</div>
 								</section>
 
-								<section class="terminal-panel rail-card status-panel" id="profile" data-rail-card aria-labelledby="status-title">
+								<section class="terminal-panel rail-card status-panel" id="profile" data-rail-card data-card-label="quick-facts.json" aria-labelledby="status-title">
 									<p class="command-line"><span class="prompt">$</span> cat quick-facts.json</p>
 									<div class="command-output">
 										<h2 id="status-title">At A Glance</h2>
@@ -182,7 +184,7 @@
 									</div>
 								</section>
 
-								<section class="terminal-panel rail-card history-panel" id="outcomes" data-rail-card aria-labelledby="history-title">
+								<section class="terminal-panel rail-card history-panel" id="outcomes" data-rail-card data-card-label="outcomes.log" aria-labelledby="history-title">
 									<p class="command-line"><span class="prompt">$</span> tail -n 4 outcomes.log</p>
 									<div class="command-output">
 										<h2 id="history-title">Selected Outcomes</h2>
@@ -195,7 +197,7 @@
 									</div>
 								</section>
 
-								<section class="terminal-panel rail-card notes-panel" id="style" data-rail-card aria-labelledby="notes-title">
+								<section class="terminal-panel rail-card notes-panel" id="style" data-rail-card data-card-label="work-style.md" aria-labelledby="notes-title">
 									<p class="command-line"><span class="prompt">$</span> cat notes/work-style.md</p>
 									<div class="command-output">
 										<h2 id="notes-title">How I Work</h2>
@@ -239,12 +241,51 @@
 					<span>$</span>
 				</div>
 				<p class="input-command">open collaboration --mode practical --focus android backend reliability</p>
+				<p class="input-hint">Tab next · Ctrl+Tab prev · ? help · / palette</p>
 				<span class="caret" aria-hidden="true"></span>
 			</section>
 
 			<footer class="page-footer">
 				<p>&copy; <span id="copyright-year">2026</span> Horácio Flávio Comé Júnior</p>
 			</footer>
+
+			<div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+			<section class="overlay" id="shortcut-overlay" hidden aria-label="Keyboard shortcuts">
+				<div class="overlay-panel shortcut-panel" role="dialog" aria-modal="true" aria-labelledby="shortcut-title">
+					<div class="overlay-header">
+						<h2 id="shortcut-title">Keyboard</h2>
+						<button class="overlay-close" type="button" data-overlay-close aria-label="Close shortcuts">Esc</button>
+					</div>
+					<div class="shortcut-grid">
+						<p><kbd>1..5</kbd><span>Jump to cards</span></p>
+						<p><kbd>Tab</kbd><span>Next card</span></p>
+						<p><kbd>Ctrl</kbd><kbd>Tab</kbd><span>Previous card</span></p>
+						<p><kbd>h</kbd><kbd>l</kbd><span>Prev / next card</span></p>
+						<p><kbd>[</kbd><kbd>]</kbd><span>Prev / next card</span></p>
+						<p><kbd>Home</kbd><kbd>End</kbd><span>First / last card</span></p>
+						<p><kbd>j</kbd><kbd>k</kbd><span>Scroll active card</span></p>
+						<p><kbd>↑</kbd><kbd>↓</kbd><span>Scroll active card</span></p>
+						<p><kbd>Space</kbd><kbd>Shift</kbd><kbd>Space</kbd><span>Page down / up</span></p>
+						<p><kbd>g</kbd><kbd>G</kbd><span>Top / bottom of active card</span></p>
+						<p><kbd>/</kbd><kbd>Ctrl</kbd><kbd>K</kbd><span>Open command palette</span></p>
+						<p><kbd>e</kbd><kbd>b</kbd><kbd>i</kbd><kbd>m</kbd><span>Email / GitHub / LinkedIn / Medium</span></p>
+						<p><kbd>?</kbd><kbd>Esc</kbd><span>Open / close this help</span></p>
+					</div>
+				</div>
+			</section>
+
+			<section class="overlay" id="command-palette" hidden aria-label="Command palette">
+				<div class="overlay-panel palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title">
+					<div class="overlay-header">
+						<h2 id="palette-title">Command Palette</h2>
+						<button class="overlay-close" type="button" data-palette-close aria-label="Close command palette">Esc</button>
+					</div>
+					<label class="sr-only" for="palette-input">Command input</label>
+					<input id="palette-input" class="palette-input" type="text" autocomplete="off" spellcheck="false" placeholder="Type a command...">
+					<div class="palette-list" id="palette-list" role="listbox" aria-label="Available commands"></div>
+				</div>
+			</section>
 		</main>
 	</body>
 </html>
