@@ -265,8 +265,53 @@ body main.page {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	flex-wrap: wrap;
 	gap: 12px;
 	min-width: 0;
+}
+
+.project-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 12px;
+	border: 1px solid var(--border-primary);
+	border-radius: 999px;
+	background: var(--surface-panel);
+	color: var(--text-toggle);
+	font-size: 0.8rem;
+	line-height: 1;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+		background-color 0.18s ease;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+	transform: translateY(-1px);
+	border-color: var(--border-accent-strong);
+	background: var(--surface-window-bar);
+	color: var(--accent);
+}
+
+.project-link-label {
+	color: var(--text-dim);
+	transition: color 0.18s ease;
+}
+
+.project-link-stars {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding-left: 8px;
+	border-left: 1px solid var(--border-primary);
+	color: var(--accent);
+}
+
+.project-link:hover .project-link-label,
+.project-link:focus-visible .project-link-label {
+	color: var(--accent);
 }
 
 .theme-toggle {
@@ -291,7 +336,6 @@ body main.page {
 	background: var(--surface-window-bar);
 	color: var(--accent);
 }
-
 
 .theme-toggle-icon {
 	font-size: 0.76rem;

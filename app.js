@@ -9,6 +9,8 @@ const railProgress = document.querySelector('[data-rail-progress]');
 const windowBar = document.querySelector('.window-bar');
 const sessionBar = document.querySelector('.session-bar');
 const windowTitle = document.querySelector('.window-title');
+const projectLink = document.querySelector('[data-project-link]');
+const projectStarsCount = document.querySelector('[data-project-stars-count]');
 const themeToggle = document.querySelector('[data-theme-toggle]');
 const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const shortcutOverlay = document.querySelector('#shortcut-overlay');
@@ -18,6 +20,7 @@ const paletteList = document.querySelector('#palette-list');
 const toastStack = document.querySelector('#toast-stack');
 
 const currentYear = new Date().getFullYear();
+const PROJECT_REPO_API_URL = 'https://api.github.com/repos/horaciocome1/horaciocome1.github.io';
 const THEME_STORAGE_KEY = 'portfolio-theme';
 const THEME_COLORS = {
 	dark: '#050505',
@@ -62,6 +65,46 @@ const showToast = (message) => {
 		toast.classList.remove('is-visible');
 		window.setTimeout(() => toast.remove(), 220);
 	}, 2200);
+};
+
+const formatCount = (count) => new Intl.NumberFormat('en-US').format(count);
+
+const setProjectStars = (count) => {
+	if (!projectStarsCount || !Number.isFinite(count) || count < 0) {
+		return;
+	}
+
+	const formattedCount = formatCount(count);
+	projectStarsCount.textContent = formattedCount;
+	projectLink?.setAttribute(
+		'aria-label',
+		`View this site project on GitHub (${formattedCount} star${count === 1 ? '' : 's'})`,
+	);
+};
+
+const loadProjectStars = async () => {
+	if (!projectStarsCount || typeof window.fetch !== 'function') {
+		return;
+	}
+
+	try {
+		const response = await window.fetch(PROJECT_REPO_API_URL, {
+			headers: {
+				Accept: 'application/vnd.github+json',
+			},
+		});
+
+		if (!response.ok) {
+			return;
+		}
+
+		const repo = await response.json();
+		if (typeof repo?.stargazers_count === 'number') {
+			setProjectStars(repo.stargazers_count);
+		}
+	} catch {
+		// Keep the seeded count if the API is unavailable.
+	}
 };
 
 const readStoredTheme = () => {
@@ -118,6 +161,8 @@ const initialTheme = readStoredTheme() ?? document.documentElement.dataset.theme
 applyTheme(initialTheme === 'light' || initialTheme === 'dark' ? initialTheme : getPreferredTheme(), {
 	persist: false,
 });
+
+void loadProjectStars();
 
 themeToggle?.addEventListener('click', toggleTheme);
 
