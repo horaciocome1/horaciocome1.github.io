@@ -20,6 +20,7 @@ const paletteList = document.querySelector('#palette-list');
 const toastStack = document.querySelector('#toast-stack');
 
 const currentYear = new Date().getFullYear();
+const HEADER_STACK_GAP = 10;
 const PROJECT_REPO_API_URL = 'https://api.github.com/repos/horaciocome1/horaciocome1.github.io';
 const THEME_STORAGE_KEY = 'portfolio-theme';
 const THEME_COLORS = {
@@ -173,8 +174,12 @@ const openExternal = (url, label) => {
 
 const updateFixedStackOffset = () => {
 	const windowBarBottom = windowBar?.getBoundingClientRect().bottom ?? 0;
-	const sessionBarBottom = sessionBar?.getBoundingClientRect().bottom ?? 0;
-	const clearance = Math.max(windowBarBottom, sessionBarBottom) + 10;
+	const sessionBarTop = windowBarBottom > 0 ? windowBarBottom + HEADER_STACK_GAP : 82;
+	const sessionBarHeight = sessionBar?.getBoundingClientRect().height ?? 0;
+	const clearance = sessionBarHeight > 0
+		? sessionBarTop + sessionBarHeight + HEADER_STACK_GAP
+		: windowBarBottom + HEADER_STACK_GAP;
+	document.documentElement.style.setProperty('--session-bar-top', `${Math.ceil(sessionBarTop)}px`);
 	document.documentElement.style.setProperty('--fixed-stack-clearance', `${Math.ceil(clearance)}px`);
 };
 
@@ -393,6 +398,13 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		updateRailHeight();
 	};
 
+	const syncViewportLayout = () => {
+		updateFixedStackOffset();
+		updateRailHeight();
+		scrollToCard(activeIndex);
+		updateRailCardEffects();
+	};
+
 	const commands = [
 		{ label: 'Jump to whoami', aliases: 'intro whoami 1', action: () => scrollToCard(0) },
 		{ label: 'Jump to selected work', aliases: 'work projects 2', action: () => scrollToCard(1) },
@@ -473,6 +485,20 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 
 	paletteInput?.addEventListener('input', updatePaletteFilter);
 
+	if (typeof ResizeObserver === 'function') {
+		const fixedStackObserver = new ResizeObserver(() => {
+			syncViewportLayout();
+		});
+
+		if (windowBar) {
+			fixedStackObserver.observe(windowBar);
+		}
+
+		if (sessionBar) {
+			fixedStackObserver.observe(sessionBar);
+		}
+	}
+
 	rail.addEventListener('scroll', updateActiveCard, { passive: true });
 	rail.addEventListener(
 		'wheel',
@@ -492,12 +518,8 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		{ passive: false },
 	);
 
-	window.addEventListener('resize', () => {
-		updateFixedStackOffset();
-		updateRailHeight();
-		scrollToCard(activeIndex);
-		updateRailCardEffects();
-	});
+	window.addEventListener('resize', syncViewportLayout);
+	window.addEventListener('load', syncViewportLayout);
 
 	window.addEventListener('keydown', (event) => {
 		if (!commandPalette?.hidden) {

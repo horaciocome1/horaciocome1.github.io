@@ -15,6 +15,7 @@ html {
 	--surface-workspace: rgba(4, 4, 4, 0.94);
 	--surface-window-bar: rgba(10, 10, 10, 0.98);
 	--surface-session-chip: rgba(11, 11, 11, 0.98);
+	--session-bar-top: 82px;
 	--surface-panel: rgba(8, 8, 8, 0.98);
 	--surface-panel-soft: rgba(3, 3, 3, 0.98);
 	--surface-panel-overlay: rgba(8, 8, 8, 0.96);
@@ -408,7 +409,7 @@ body main.page {
 
 .session-bar {
 	position: fixed;
-	top: 82px;
+	top: var(--session-bar-top);
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: 4;
@@ -819,9 +820,6 @@ body main.page {
 	padding: 10px 0;
 	border-bottom: 1px dashed var(--border-primary);
 	color: var(--text-history);
-}
-
-.history-list li {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	gap: 12px;
@@ -1256,7 +1254,6 @@ kbd {
 	}
 
 	.session-bar {
-		top: 72px;
 		width: calc(100vw - 40px);
 		padding: 0;
 	}

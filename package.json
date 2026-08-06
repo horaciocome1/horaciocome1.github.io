@@ -1,0 +1,17 @@
+{
+	"name": "horaciocome1.github.io",
+	"private": true,
+	"scripts": {
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+		"lint:js": "eslint .",
+		"lint:css": "stylelint \"css/**/*.css\"",
+		"lint:html": "htmlhint \"index.html\""
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"eslint": "^10.8.0",
+		"globals": "^17.9.0",
+		"htmlhint": "^1.9.2",
+		"stylelint": "^17.14.1"
+	}
+}

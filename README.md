@@ -14,3 +14,7 @@ Built as a static site with plain `HTML`, `CSS`, and a small amount of `JavaScri
 ## Local Preview
 
 Open `index.html` in a browser, or serve the repo with any static file server.
+
+## Validation
+
+Install the dev tooling with `npm install`, then run `npm run lint` to validate the project's HTML, CSS, and JavaScript.
