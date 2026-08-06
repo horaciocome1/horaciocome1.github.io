@@ -12,6 +12,8 @@ const windowTitle = document.querySelector('.window-title');
 const projectLink = document.querySelector('[data-project-link]');
 const projectStarsCount = document.querySelector('[data-project-stars-count]');
 const themeToggle = document.querySelector('[data-theme-toggle]');
+const menuToggle = document.querySelector('[data-menu-toggle]');
+const mobileMenu = document.querySelector('#mobile-menu');
 const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const shortcutOverlay = document.querySelector('#shortcut-overlay');
 const commandPalette = document.querySelector('#command-palette');
@@ -21,6 +23,8 @@ const toastStack = document.querySelector('#toast-stack');
 
 const currentYear = new Date().getFullYear();
 const HEADER_STACK_GAP = 10;
+const COMPACT_LAYOUT_BREAKPOINT = 900;
+const MOBILE_MENU_OPEN_CLASS = 'has-mobile-menu-open';
 const PROJECT_REPO_API_URL = 'https://api.github.com/repos/horaciocome1/horaciocome1.github.io';
 const THEME_STORAGE_KEY = 'portfolio-theme';
 const THEME_COLORS = {
@@ -174,11 +178,15 @@ const openExternal = (url, label) => {
 
 const updateFixedStackOffset = () => {
 	const windowBarBottom = windowBar?.getBoundingClientRect().bottom ?? 0;
-	const sessionBarTop = windowBarBottom > 0 ? windowBarBottom + HEADER_STACK_GAP : 82;
+	const mobileMenuBottom = mobileMenu && !mobileMenu.hidden
+		? mobileMenu.getBoundingClientRect().bottom
+		: 0;
+	const fixedHeaderBottom = Math.max(windowBarBottom, mobileMenuBottom);
+	const sessionBarTop = fixedHeaderBottom > 0 ? fixedHeaderBottom + HEADER_STACK_GAP : 82;
 	const sessionBarHeight = sessionBar?.getBoundingClientRect().height ?? 0;
 	const clearance = sessionBarHeight > 0
 		? sessionBarTop + sessionBarHeight + HEADER_STACK_GAP
-		: windowBarBottom + HEADER_STACK_GAP;
+		: fixedHeaderBottom + HEADER_STACK_GAP;
 	document.documentElement.style.setProperty('--session-bar-top', `${Math.ceil(sessionBarTop)}px`);
 	document.documentElement.style.setProperty('--fixed-stack-clearance', `${Math.ceil(clearance)}px`);
 };
@@ -194,6 +202,7 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 	const dotButtons = [];
 	const progressLeds = [];
 	const visitedCards = new Set([0]);
+	const isCompactLayout = () => window.innerWidth <= COMPACT_LAYOUT_BREAKPOINT;
 
 	const getActiveCard = () => railCards[activeIndex] ?? null;
 	const getCardLabel = (card) => card?.dataset.cardLabel ?? card?.id ?? '';
@@ -273,8 +282,30 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		activeCard.scrollTo({ top, behavior });
 	};
 
+	const resetRailHeight = () => {
+		railCards.forEach((card) => {
+			card.style.maxHeight = '';
+			card.style.overflowY = 'visible';
+		});
+
+		rail.style.height = '';
+	};
+
 	const updateRailHeight = () => {
 		const activeCard = getActiveCard();
+		if (!activeCard) {
+			resetRailHeight();
+			return;
+		}
+
+		resetRailHeight();
+
+		const contentHeight = activeCard.scrollHeight;
+		if (isCompactLayout()) {
+			rail.style.height = `${contentHeight}px`;
+			return;
+		}
+
 		const shell = rail.closest('.card-rail-shell');
 		const shellRect = shell?.getBoundingClientRect();
 		const shellBottomPadding = 18;
@@ -282,17 +313,6 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		const availableHeight = shellRect
 			? Math.max(280, window.innerHeight - shellRect.top - viewportBottomGap - shellBottomPadding)
 			: window.innerHeight;
-
-		if (!activeCard) {
-			return;
-		}
-
-		railCards.forEach((card) => {
-			card.style.maxHeight = '';
-			card.style.overflowY = 'visible';
-		});
-
-		const contentHeight = activeCard.scrollHeight;
 		const needsScroll = contentHeight > availableHeight;
 
 		activeCard.style.maxHeight = needsScroll ? `${availableHeight}px` : '';
@@ -312,7 +332,36 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		}
 	};
 
+	const closeMenu = () => {
+		document.body.classList.remove(MOBILE_MENU_OPEN_CLASS);
+
+		if (!menuToggle || !mobileMenu) {
+			return;
+		}
+
+		mobileMenu.hidden = true;
+		menuToggle.setAttribute('aria-expanded', 'false');
+		menuToggle.setAttribute('aria-label', 'Open navigation menu');
+		updateFixedStackOffset();
+		updateRailHeight();
+	};
+
+	const openMenu = () => {
+		document.body.classList.add(MOBILE_MENU_OPEN_CLASS);
+
+		if (!menuToggle || !mobileMenu) {
+			return;
+		}
+
+		mobileMenu.hidden = false;
+		menuToggle.setAttribute('aria-expanded', 'true');
+		menuToggle.setAttribute('aria-label', 'Close navigation menu');
+		updateFixedStackOffset();
+		updateRailHeight();
+	};
+
 	const openShortcuts = () => {
+		closeMenu();
 		closePalette();
 		if (shortcutOverlay) {
 			shortcutOverlay.hidden = false;
@@ -361,6 +410,7 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 	};
 
 	const openPalette = () => {
+		closeMenu();
 		closeShortcuts();
 		if (!commandPalette || !paletteInput) {
 			return;
@@ -425,6 +475,10 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 	};
 
 	const syncViewportLayout = () => {
+		if (!isCompactLayout()) {
+			closeMenu();
+		}
+
 		updateFixedStackOffset();
 		updateRailHeight();
 		scrollToCard(activeIndex);
@@ -450,12 +504,34 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 	treeLinks.forEach((link) => {
 		link.addEventListener('click', (event) => {
 			event.preventDefault();
+			closeMenu();
 			const targetId = link.getAttribute('href')?.slice(1);
 			const targetIndex = railCards.findIndex((card) => card.id === targetId);
 			if (targetIndex >= 0) {
 				scrollToCard(targetIndex);
 			}
 		});
+	});
+
+	menuToggle?.addEventListener('click', () => {
+		if (mobileMenu?.hidden ?? true) {
+			closeShortcuts();
+			closePalette();
+			openMenu();
+			return;
+		}
+
+		closeMenu();
+	});
+
+	document.addEventListener('click', (event) => {
+		if (mobileMenu?.hidden || !windowBar || !(event.target instanceof Node)) {
+			return;
+		}
+
+		if (!windowBar.contains(event.target)) {
+			closeMenu();
+		}
 	});
 
 	railButtons.forEach((button) => {
@@ -522,6 +598,10 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 
 		if (sessionBar) {
 			fixedStackObserver.observe(sessionBar);
+		}
+
+		if (mobileMenu) {
+			fixedStackObserver.observe(mobileMenu);
 		}
 	}
 
@@ -591,6 +671,12 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 			if (event.key.length === 1 || event.key === 'Backspace') {
 				event.preventDefault();
 			}
+			return;
+		}
+
+		if (!mobileMenu?.hidden && event.key === 'Escape') {
+			event.preventDefault();
+			closeMenu();
 			return;
 		}
 
