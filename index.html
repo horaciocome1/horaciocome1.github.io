@@ -6,189 +6,417 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta
 			name="description"
-			content="Horacio Come is an Android engineer with 7+ years of experience building Kotlin mobile products and backend systems that serve real-world users."
+			content="Horacio Come is an Android engineer with 7+ years of experience building Kotlin Android apps, native migrations, and backend systems for fintech, retail, and scheduling products."
 		>
+		<meta name="robots" content="index,follow,max-image-preview:large">
+		<meta name="author" content="Horácio Comé">
+		<link rel="canonical" href="https://horacioco.me/">
+		<link rel="alternate" hreflang="en" href="https://horacioco.me/">
+		<link rel="sitemap" type="application/xml" href="https://horacioco.me/sitemap.xml">
+		<link rel="me" href="https://github.com/horaciocome1">
+		<link rel="me" href="https://www.linkedin.com/in/horaciocome1">
+		<link rel="me" href="https://horaciocome1.medium.com">
+		<meta name="theme-color" content="#050505">
+		<script>
+			(() => {
+				const themeColors = {
+					dark: '#050505',
+					light: '#f4efe6',
+				};
+				let storedTheme = null;
+
+				try {
+					const savedTheme = window.localStorage.getItem('portfolio-theme');
+					if (savedTheme === 'light' || savedTheme === 'dark') {
+						storedTheme = savedTheme;
+					}
+				} catch {
+					// Ignore storage access issues and fall back to the system theme.
+				}
+
+				const prefersLightTheme =
+					typeof window.matchMedia === 'function' &&
+					window.matchMedia('(prefers-color-scheme: light)').matches;
+				const theme = storedTheme ?? (prefersLightTheme ? 'light' : 'dark');
+
+				document.documentElement.dataset.theme = theme;
+				document.documentElement.style.colorScheme = theme;
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', themeColors[theme]);
+			})();
+		</script>
+
+		<meta property="og:title" content="Horácio Comé | Android Engineer">
+		<meta
+			property="og:description"
+			content="Android engineer focused on Kotlin, native Android, and backend systems that stay reliable in the real world."
+		>
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://horacioco.me/">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:site_name" content="Horácio Comé">
+		<meta property="og:image" content="https://horacioco.me/og-image.png">
+		<meta property="og:image:secure_url" content="https://horacioco.me/og-image.png">
+		<meta property="og:image:type" content="image/png">
+		<meta property="og:image:width" content="1200">
+		<meta property="og:image:height" content="630">
+		<meta property="og:image:alt" content="Terminal-style preview card for Horácio Comé, Android Engineer">
+
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Horácio Comé | Android Engineer">
+		<meta
+			name="twitter:description"
+			content="Android engineer focused on Kotlin, native Android, and backend systems that stay reliable in the real world."
+		>
+		<meta name="twitter:url" content="https://horacioco.me/">
+		<meta name="twitter:image" content="https://horacioco.me/og-image.png">
+		<meta name="twitter:image:alt" content="Terminal-style preview card for Horácio Comé, Android Engineer">
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "WebSite",
+						"@id": "https://horacioco.me/#website",
+						"url": "https://horacioco.me/",
+						"name": "Horácio Comé",
+						"description": "Portfolio site for Horácio Comé, Android engineer.",
+						"inLanguage": "en",
+						"about": { "@id": "https://horacioco.me/#person" },
+						"publisher": { "@id": "https://horacioco.me/#person" }
+					},
+					{
+						"@type": "Person",
+						"@id": "https://horacioco.me/#person",
+						"name": "Horácio Comé",
+						"alternateName": "Horacio Come",
+						"url": "https://horacioco.me/",
+						"image": "https://horacioco.me/og-image.png",
+						"jobTitle": "Android Engineer",
+						"description": "Android engineer focused on Kotlin, native Android, and backend systems that stay reliable in the real world.",
+						"email": "mailto:mail@horacioco.me",
+						"knowsAbout": ["Kotlin", "Android", "Native Android", "Backend Systems", "Ktor", "PostgreSQL"],
+						"mainEntityOfPage": { "@id": "https://horacioco.me/#website" },
+						"sameAs": [
+							"https://github.com/horaciocome1",
+							"https://www.linkedin.com/in/horaciocome1",
+							"https://horaciocome1.medium.com",
+							"https://play.google.com/store/apps/dev?id=8639907477820496824",
+							"https://apps.apple.com/pt/developer/horacio-flavio-come-junior/id1748627513"
+						]
+					}
+				]
+			}
+		</script>
 
 		<title>Horácio Comé | Android Engineer</title>
 
-		<link rel="icon" href="android-brands-solid.ico" type="image/png" />
+		<link rel="icon" href="/favicon.ico" sizes="any">
 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300,400,500,700" rel="stylesheet">
 		<link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/styles.css">
-		<!-- <link rel="stylesheet" href="css/themes/indigo-white.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/green-white.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/red-white.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/grey-white.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/white-indigo.css"> -->
-		<link rel="stylesheet" href="css/themes/white-blue.css">
-		<!-- <link rel="stylesheet" href="css/themes/white-grey.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/white-red.css"> -->
-		<!-- <link rel="stylesheet" href="css/themes/yellow-black.css"> -->
+		<script src="app.js" defer></script>
 	</head>
 	<body>
 		<main class="page">
-			<header class="site-header">
-				<a class="site-name" href="#top">Horácio Comé</a>
-				<nav class="site-nav" aria-label="Primary">
-					<a href="#projects">Projects</a>
-					<a href="#about">About</a>
-					<a href="#contact">Contact</a>
-				</nav>
-			</header>
-
-			<section class="hero section" id="top">
-				<div class="hero-copy">
-					<p class="eyebrow">>_ Hello, I'm Horácio.</p>
-					<h1>Android engineer building Kotlin products people actually use.</h1>
-					<p class="lead">
-						For more than seven years, I have shipped mobile apps professionally across fintech,
-						retail intelligence, and product teams. These days I am also building backend systems
-						for Markado, which gives me a full product view from client experience to operational
-						infrastructure.
-					</p>
-					<div class="cta-group">
-						<a class="button button-primary" href="mailto:mail@horacioco.me">Email me</a>
-						<a class="button button-secondary" href="#projects">View projects</a>
+			<section class="workspace" id="top" aria-label="Horacio Come portfolio terminal">
+				<header class="window-bar" aria-label="Terminal window header">
+					<div class="window-controls" aria-hidden="true">
+						<span></span>
+						<span></span>
+						<span></span>
 					</div>
-				</div>
-				<aside class="hero-panel" aria-label="Current focus">
-					<p class="panel-kicker">Current focus</p>
-					<ul class="hero-list">
-						<li>Native Android apps with Kotlin</li>
-						<li>Migration work from cross-platform foundations to maintainable native code</li>
-						<li>Backend architecture and integrations for Markado</li>
-					</ul>
-					<div class="hero-meta">
-						<span>7+ years in Android</span>
-						<span>Backend since 2024</span>
-					</div>
-				</aside>
-			</section>
-
-			<section class="section" id="projects">
-				<div class="section-heading">
-					<p class="section-kicker">Featured work</p>
-					<h2>Projects with real-world scale.</h2>
-					<p>
-						I care about products that have to stay dependable in the real world, whether that
-						means money movement, enterprise operations, or scheduling systems with a lot of moving
-						parts.
-					</p>
-				</div>
-				<div class="project-grid">
-					<article class="project-card">
-						<p class="project-type">Startup / Backend</p>
-						<h3>Markado scheduling backend</h3>
-						<p>
-							Built the backend powering Markado's scheduling and event workflows. The platform
-							handles appointments, guest management, invite delivery, check-in flows, payments,
-							and Google Calendar synchronization for service businesses and event organizers.
-						</p>
-						<p class="project-stack">
-							Ktor, PostgreSQL, Exposed, Stripe, Twilio, SendGrid, Google Calendar
-						</p>
+					<p class="window-title">~/horacio/portfolio</p>
+					<div class="window-actions">
+						<p class="window-meta">stable build</p>
 						<a
 							class="project-link"
+							href="https://github.com/horaciocome1/horaciocome1.github.io"
 							target="_blank"
 							rel="noopener noreferrer"
-							href="https://markado.pt"
-						>Visit markado.pt</a>
-					</article>
-					<article class="project-card">
-						<p class="project-type">Current work / Android</p>
-						<h3>TrueVUE Cloud migration</h3>
-						<p>
-							Leading the migration of Sensormatic's TrueVUE Cloud app from a cross-platform
-							foundation to Kotlin Android, with a focus on native control, maintainability, and
-							a stronger long-term product base.
-						</p>
-						<p class="project-stack">Kotlin, Android, app migration, native architecture</p>
+							data-project-link
+							aria-label="View this site project on GitHub (1 star)"
+							title="View this site project on GitHub"
+						>
+							<i class="fab fa-github" aria-hidden="true"></i>
+							<span class="project-link-label">source</span>
+							<span class="project-link-stars" aria-hidden="true">
+								<i class="fas fa-star" aria-hidden="true"></i>
+								<span data-project-stars-count>1</span>
+							</span>
+						</a>
+						<button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Light mode" data-theme-toggle>
+							<i class="fas fa-moon theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"></i>
+							<span class="theme-toggle-track" aria-hidden="true">
+								<span class="theme-toggle-thumb"></span>
+							</span>
+							<i class="fas fa-sun theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"></i>
+						</button>
+						<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+					</div>
+					<div class="mobile-menu" id="mobile-menu" hidden>
+						<p class="command-line"><span class="prompt">$</span> ls workspace/</p>
+						<nav class="mobile-menu-nav" aria-label="Section navigation">
+							<a class="menu-link is-active" data-tree-link href="#intro">whoami</a>
+							<a class="menu-link" data-tree-link href="#work">selected-work/</a>
+							<a class="menu-link" data-tree-link href="#profile">quick-facts.json</a>
+							<a class="menu-link" data-tree-link href="#outcomes">outcomes.log</a>
+							<a class="menu-link" data-tree-link href="#style">work-style.md</a>
+						</nav>
 						<a
-							class="project-link"
+							class="project-link mobile-project-link"
+							href="https://github.com/horaciocome1/horaciocome1.github.io"
 							target="_blank"
 							rel="noopener noreferrer"
-							href="https://www.sensormatic.com/landing/truevue-incloud"
-						>Learn about TrueVUE Cloud</a>
-					</article>
-					<article class="project-card">
-						<p class="project-type">Previous work / Fintech</p>
-						<h3>M-Pesa Android apps across five markets</h3>
-						<p>
-							Worked on Android experiences for M-Pesa in Mozambique, Lesotho, Tanzania, DRC,
-							and Ghana, contributing to mobile money products that operate at national scale and
-							need to be dependable every day.
-						</p>
-						<p class="project-stack">Android, fintech, multi-market delivery</p>
-						<a
-							class="project-link"
-							target="_blank"
-							rel="noopener noreferrer"
-							href="https://en.wikipedia.org/wiki/M-Pesa"
-						>About M-Pesa</a>
-					</article>
+							aria-label="View this site project on GitHub"
+							title="View this site project on GitHub"
+						>
+							<i class="fab fa-github" aria-hidden="true"></i>
+							<span class="project-link-label">source</span>
+						</a>
+					</div>
+				</header>
+
+				<div class="workspace-body">
+					<section class="session-bar" aria-label="Terminal session overview">
+						<div class="session-chip is-online"><span>mobile</span><strong>online</strong></div>
+						<div class="session-chip is-online"><span>server</span><strong>online</strong></div>
+						<div class="session-chip is-active"><span>kotlin</span><strong>active</strong></div>
+						<div class="session-chip is-open"><span>product-fit</span><strong>open</strong></div>
+					</section>
+
+					<div class="rail-nav" aria-label="Slide navigation">
+						<button class="rail-button" type="button" data-rail-direction="prev" aria-label="Previous card">&larr;</button>
+						<div class="rail-progress" data-rail-progress aria-label="Slide progress"></div>
+						<button class="rail-button" type="button" data-rail-direction="next" aria-label="Next card">&rarr;</button>
+					</div>
+
+					<div class="workspace-grid">
+					<aside class="sidebar-stack" aria-label="Project file tree navigation">
+						<section class="terminal-panel side-panel nav-panel" aria-labelledby="tree-title">
+							<p class="command-line"><span class="prompt">$</span> tree -L 2 workspace/</p>
+							<div class="command-output">
+								<h2 id="tree-title">Project Tree</h2>
+								<nav class="tree-nav" aria-label="Section navigation">
+									<ul class="tree-list">
+										<li><span class="tree-dir">workspace</span></li>
+										<li><a class="tree-link is-active" data-tree-link href="#intro"><span class="tree-indent">|-</span><span class="tree-file">whoami</span></a></li>
+										<li><a class="tree-link" data-tree-link href="#work"><span class="tree-indent">|-</span><span class="tree-file">selected-work/</span></a></li>
+										<li><a class="tree-link" data-tree-link href="#profile"><span class="tree-indent">|-</span><span class="tree-file">quick-facts.json</span></a></li>
+										<li><a class="tree-link" data-tree-link href="#outcomes"><span class="tree-indent">|-</span><span class="tree-file">outcomes.log</span></a></li>
+										<li><a class="tree-link" data-tree-link href="#style"><span class="tree-indent">|-</span><span class="tree-file">work-style.md</span></a></li>
+									</ul>
+								</nav>
+							</div>
+						</section>
+					</aside>
+
+					<div class="main-stack">
+						<div class="card-rail-shell">
+							<div class="card-rail" data-card-rail>
+								<section class="terminal-panel rail-card intro-panel" id="intro" data-rail-card data-card-label="whoami" aria-labelledby="intro-title">
+									<p class="command-line"><span class="prompt">$</span> whoami</p>
+									<div class="command-output">
+										<p class="eyebrow">ANDROID ENGINEER</p>
+										<h1 id="intro-title">Horácio Comé</h1>
+										<p class="summary">
+											I build Kotlin Android apps, native migration work, and backend systems for products that get messy once
+											they meet real users. I care about reliable flows, maintainable code, and staying
+											close enough to the product to solve the actual problem instead of the neat one.
+										</p>
+										<p class="note-line">
+											Right now I am focused on Kotlin Android migration work for TrueVUE Cloud and
+											Ktor and PostgreSQL backend development for Markado.
+										</p>
+									</div>
+								</section>
+
+								<section class="terminal-panel rail-card work-panel" id="work" data-rail-card data-card-label="selected-work/" aria-labelledby="work-title">
+									<p class="command-line"><span class="prompt">$</span> ls selected-work/</p>
+									<div class="command-output">
+										<h2 id="work-title">Selected Work</h2>
+										<p class="section-note">A few systems where reliability and maintainability mattered.</p>
+										<div class="work-list">
+									<article class="work-item">
+										<div class="work-topline">
+											<h3>kumbase-platform.kt</h3>
+											<a target="_blank" rel="noopener noreferrer" href="https://kumbase.com">kumbase.com</a>
+										</div>
+										<div class="impact-badges"><span>saas</span><span>postgresql</span><span>backups</span><span>security-first</span></div>
+										<p>
+											Built Kumbase, a security-first SaaS for automated PostgreSQL backups with encrypted
+											artifact storage and portable restore downloads. The work centered on dependable
+											backup flows, data safety, and a product experience teams can trust when recovery
+											actually matters.
+										</p>
+										<p class="stack-line">stack: Kotlin, PostgreSQL, backup automation, encrypted storage, restore workflows</p>
+									</article>
+									<article class="work-item">
+										<div class="work-topline">
+											<h3>markado-backend.kt</h3>
+											<a target="_blank" rel="noopener noreferrer" href="https://markado.pt">markado.pt</a>
+										</div>
+										<div class="impact-badges"><span>backend</span><span>scheduling</span><span>payments</span><span>integrations</span></div>
+										<p>
+											Built the backend powering scheduling, guest flows, invites, check-in, payments,
+											and calendar sync. The job was not just APIs, it was making the whole workflow hold
+											up under real operational use.
+										</p>
+										<p class="stack-line">stack: Ktor, PostgreSQL, Exposed, Stripe, Twilio, SendGrid, Google Calendar</p>
+									</article>
+									<article class="work-item">
+										<div class="work-topline">
+											<h3>truevue-migration.md</h3>
+											<a target="_blank" rel="noopener noreferrer" href="https://www.sensormatic.com/landing/truevue-incloud">sensormatic.com</a>
+										</div>
+										<div class="impact-badges"><span>android</span><span>migration</span><span>native architecture</span><span>RAIN RFID</span></div>
+										<p>
+											Leading migration work from a cross-platform base to Kotlin Android with an eye on
+											maintainability, better native control, and a healthier long-term foundation for the
+											product.
+										</p>
+										<p class="stack-line">stack: Kotlin, Android, native architecture, migration strategy</p>
+									</article>
+									<article class="work-item">
+										<div class="work-topline">
+											<h3>mpesa-multi-market.txt</h3>
+											<a target="_blank" rel="noopener noreferrer" href="https://en.wikipedia.org/wiki/M-Pesa">about M-Pesa</a>
+										</div>
+										<div class="impact-badges"><span>fintech</span><span>android</span><span>5M users</span><span>reliability</span></div>
+										<p>
+											Worked on Android experiences for Mozambique, Lesotho, Tanzania, DRC, and Ghana,
+											shipping for mobile money products where reliability matters every day, not just at
+											launch.
+										</p>
+										<p class="stack-line">stack: Android, fintech, multi-market delivery, reliability</p>
+									</article>
+										</div>
+									</div>
+								</section>
+
+								<section class="terminal-panel rail-card status-panel" id="profile" data-rail-card data-card-label="quick-facts.json" aria-labelledby="status-title">
+									<p class="command-line"><span class="prompt">$</span> cat quick-facts.json</p>
+									<div class="command-output">
+										<h2 id="status-title">At A Glance</h2>
+										<div class="status-list" role="list">
+									<div class="status-row" role="listitem"><span class="key">experience</span><span class="value" data-experience-since="2018">7+ years</span></div>
+									<div class="status-row" role="listitem"><span class="key">primary</span><span class="value">Kotlin Android engineer</span></div>
+									<div class="status-row" role="listitem"><span class="key">mobile</span><span class="value">KMP, CMP, Android native, Compose, Hilt, Koin, Retrofit, Ktor</span></div>
+									<div class="status-row" role="listitem"><span class="key">server</span><span class="value">KMP, Ktor, PostgreSQL, Exposed, auth, integrations, background jobs</span></div>
+								</div>
+									</div>
+								</section>
+
+								<section class="terminal-panel rail-card history-panel" id="outcomes" data-rail-card data-card-label="outcomes.log" aria-labelledby="history-title">
+									<p class="command-line"><span class="prompt">$</span> tail -n 4 outcomes.log</p>
+									<div class="command-output">
+										<h2 id="history-title">Selected Outcomes</h2>
+										<ol class="history-list">
+									<li><span class="history-index">01</span><span>Built Kumbase full stack as a security-first SaaS for automated PostgreSQL backups, encrypted artifact storage, and portable restores.</span></li>
+									<li><span class="history-index">02</span><span>Shipped Android work for M-Pesa across five national markets serving around 5 million users.</span></li>
+									<li><span class="history-index">03</span><span>Leading TrueVUE Cloud migration toward Kotlin Android for a product that connects with external devices and rain RFID workflows.</span></li>
+									<li><span class="history-index">04</span><span>Built Markado backend flows across scheduling, payments, messaging, and calendar sync for real operational use.</span></li>
+								</ol>
+									</div>
+								</section>
+
+								<section class="terminal-panel rail-card notes-panel" id="style" data-rail-card data-card-label="work-style.md" aria-labelledby="notes-title">
+									<p class="command-line"><span class="prompt">$</span> cat notes/work-style.md</p>
+									<div class="command-output">
+										<h2 id="notes-title">How I Work</h2>
+										<p>
+									I prefer software that survives real usage and still makes sense later. Usually that
+									means reducing moving parts, staying close to the product problem, and choosing
+									solutions a team can keep operating after the launch energy is gone.
+								</p>
+									</div>
+								</section>
+							</div>
+							<div class="rail-dots" data-rail-dots aria-label="Card indicators"></div>
+						</div>
+					</div>
+
+					<aside class="detail-stack" aria-label="Contact pane">
+						<section class="terminal-panel links-panel" id="contact" aria-labelledby="links-title">
+							<p class="command-line"><span class="prompt">$</span> open contact --preferred email</p>
+							<div class="command-output">
+								<h2 id="links-title">Reach Out</h2>
+								<div class="icon-row" aria-label="Social links">
+									<a aria-label="Email" href="mailto:mail@horacioco.me"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+									<a aria-label="GitHub" target="_blank" rel="noopener noreferrer" href="https://github.com/horaciocome1"><i class="fab fa-github" aria-hidden="true"></i></a>
+									<a aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/horaciocome1"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+									<a aria-label="Medium" target="_blank" rel="noopener noreferrer" href="https://horaciocome1.medium.com"><i class="fab fa-medium" aria-hidden="true"></i></a>
+								</div>
+								<p class="command-line command-line-inline"><span class="prompt">$</span> current-mode</p>
+								<p class="mode-output">android / kotlin / backend / product ownership</p>
+							</div>
+						</section>
+					</aside>
 				</div>
+			</div>
+
 			</section>
 
-			<section class="section" id="about">
-				<div class="section-heading">
-					<p class="section-kicker">About</p>
-					<h2>Kotlin-first, product-minded, and curious about hard problems.</h2>
+			<section class="terminal-panel shell-input" aria-label="Interactive shell prompt mockup">
+				<div class="input-prefix">
+					<span class="prompt">horacio@portfolio</span>
+					<span>:</span>
+					<span class="input-path">~/workspace</span>
+					<span>$</span>
 				</div>
-				<div class="about-grid">
-					<div>
-						<p>
-							I'm a dedicated engineer driven by a love for Kotlin and by the challenge of turning
-							ambitious ideas into useful products. I enjoy solving messy problems, simplifying
-							systems, and shipping software that genuinely helps people.
-						</p>
-						<p>
-							What keeps me motivated is learning fast, pushing into unfamiliar territory, and
-							bringing a fresh perspective to every team and product I work on. Android is still my
-							main craft, but building Markado's backend pushed me to think more deeply about the
-							whole product from client experience to operations.
-						</p>
-					</div>
-					<div class="about-card">
-						<h3>What I bring</h3>
-						<ul class="bullet-list">
-							<li>More than seven years of professional Android delivery</li>
-							<li>A practical engineering mindset shaped by real products and real users</li>
-							<li>Growing backend experience from building startup systems end to end</li>
-						</ul>
-					</div>
-				</div>
+				<p class="input-command">open collaboration --mode practical --focus android backend reliability</p>
+				<p class="input-hint">Tab next · Ctrl+Tab prev · ? help · / palette</p>
+				<span class="caret" aria-hidden="true"></span>
 			</section>
 
-			<section class="section" id="contact">
-				<div class="section-heading">
-					<p class="section-kicker">Contact</p>
-					<h2>Let's build something useful.</h2>
-					<p>
-						If you're looking for Android expertise, Kotlin product engineering, or someone who
-						likes owning problems end to end, send me a note.
-					</p>
-				</div>
-				<div class="contact-panel">
-					<a class="button button-primary" href="mailto:mail@horacioco.me">mail@horacioco.me</a>
-					<p>Or find me around the internet.</p>
-					<div class="icons-social" aria-label="Social links">
-						<a aria-label="Email" href="mailto:mail@horacioco.me"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-						<a aria-label="GitHub" target="_blank" rel="noopener noreferrer" href="https://github.com/horaciocome1"><i class="fab fa-github" aria-hidden="true"></i></a>
-						<a aria-label="Google Play" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/dev?id=8639907477820496824"><i class="fab fa-google-play" aria-hidden="true"></i></a>
-						<a aria-label="App Store" target="_blank" rel="noopener noreferrer" href="https://apps.apple.com/pt/developer/horacio-flavio-come-junior/id1748627513"><i class="fab fa-app-store-ios" aria-hidden="true"></i></a>
-						<a aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/horaciocome1"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-						<a aria-label="Medium" target="_blank" rel="noopener noreferrer" href="https://horaciocome1.medium.com"><i class="fab fa-medium" aria-hidden="true"></i></a>
-					</div>
-				</div>
-			</section>
-
-			<footer class="site-footer">
-				<p>Android engineer with 7+ years of experience, now also building backend systems at Markado.</p>
+			<footer class="page-footer">
+				<p>&copy; <span id="copyright-year">2026</span> Horácio Flávio Comé Júnior</p>
 			</footer>
+
+			<div class="toast-stack" id="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+			<section class="overlay" id="shortcut-overlay" hidden aria-label="Keyboard shortcuts">
+				<div class="overlay-panel shortcut-panel" role="dialog" aria-modal="true" aria-labelledby="shortcut-title">
+					<div class="overlay-header">
+						<h2 id="shortcut-title">Keyboard</h2>
+						<button class="overlay-close" type="button" data-overlay-close aria-label="Close shortcuts">Esc</button>
+					</div>
+					<div class="shortcut-grid">
+						<p><kbd>1..5</kbd><span>Jump to cards</span></p>
+						<p><kbd>Tab</kbd><span>Next card</span></p>
+						<p><kbd>Ctrl</kbd><kbd>Tab</kbd><span>Previous card</span></p>
+						<p><kbd>h</kbd><kbd>l</kbd><span>Prev / next card</span></p>
+						<p><kbd>[</kbd><kbd>]</kbd><span>Prev / next card</span></p>
+						<p><kbd>Home</kbd><kbd>End</kbd><span>First / last card</span></p>
+						<p><kbd>j</kbd><kbd>k</kbd><span>Scroll active card</span></p>
+						<p><kbd>↑</kbd><kbd>↓</kbd><span>Scroll active card</span></p>
+						<p><kbd>Space</kbd><kbd>Shift</kbd><kbd>Space</kbd><span>Page down / up</span></p>
+						<p><kbd>g</kbd><kbd>G</kbd><span>Top / bottom of active card</span></p>
+						<p><kbd>/</kbd><kbd>Ctrl</kbd><kbd>K</kbd><span>Open command palette</span></p>
+						<p><kbd>e</kbd><kbd>b</kbd><kbd>i</kbd><kbd>m</kbd><span>Email / GitHub / LinkedIn / Medium</span></p>
+						<p><kbd>?</kbd><kbd>Esc</kbd><span>Open / close this help</span></p>
+					</div>
+				</div>
+			</section>
+
+			<section class="overlay" id="command-palette" hidden aria-label="Command palette">
+				<div class="overlay-panel palette-panel" role="dialog" aria-modal="true" aria-labelledby="palette-title">
+					<div class="overlay-header">
+						<h2 id="palette-title">Command Palette</h2>
+						<button class="overlay-close" type="button" data-palette-close aria-label="Close command palette">Esc</button>
+					</div>
+					<label class="sr-only" for="palette-input">Command input</label>
+					<input id="palette-input" class="palette-input" type="text" autocomplete="off" spellcheck="false" placeholder="Type a command...">
+					<div class="palette-list" id="palette-list" role="listbox" aria-label="Available commands"></div>
+				</div>
+			</section>
 		</main>
 	</body>
 </html>
