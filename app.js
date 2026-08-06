@@ -197,6 +197,30 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 
 	const getActiveCard = () => railCards[activeIndex] ?? null;
 	const getCardLabel = (card) => card?.dataset.cardLabel ?? card?.id ?? '';
+	const getCardHash = (card) => (card?.id ? `#${card.id}` : '');
+
+	const syncLocationHash = (card) => {
+		const nextHash = getCardHash(card);
+		if (!nextHash || window.location.hash === nextHash) {
+			return;
+		}
+
+		if (window.history && typeof window.history.replaceState === 'function') {
+			window.history.replaceState(null, '', nextHash);
+			return;
+		}
+
+		window.location.hash = nextHash;
+	};
+
+	const getCardIndexFromHash = () => {
+		const hash = window.location.hash.slice(1);
+		if (!hash) {
+			return -1;
+		}
+
+		return railCards.findIndex((card) => card.id === hash);
+	};
 
 	const setActiveLink = (id) => {
 		treeLinks.forEach((link) => {
@@ -378,6 +402,7 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 			left: getCardScrollTarget(card),
 			behavior: 'smooth',
 		});
+		syncLocationHash(card);
 		setActiveLink(card.id);
 		updateControls();
 		updateRailHeight();
@@ -392,6 +417,7 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 
 		activeIndex = closestIndex;
 		visitedCards.add(activeIndex);
+		syncLocationHash(railCards[closestIndex]);
 		updateRailCardEffects();
 		setActiveLink(railCards[closestIndex].id);
 		updateControls();
@@ -520,6 +546,12 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 
 	window.addEventListener('resize', syncViewportLayout);
 	window.addEventListener('load', syncViewportLayout);
+	window.addEventListener('hashchange', () => {
+		const targetIndex = getCardIndexFromHash();
+		if (targetIndex >= 0 && targetIndex !== activeIndex) {
+			scrollToCard(targetIndex);
+		}
+	});
 
 	window.addEventListener('keydown', (event) => {
 		if (!commandPalette?.hidden) {
@@ -685,6 +717,7 @@ if (treeLinks.length > 0 && railCards.length > 0 && rail) {
 		}
 	});
 
-	scrollToCard(0);
+	const initialIndex = getCardIndexFromHash();
+	scrollToCard(initialIndex >= 0 ? initialIndex : 0);
 	updateRailCardEffects();
 }
