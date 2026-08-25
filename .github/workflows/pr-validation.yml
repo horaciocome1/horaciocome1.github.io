@@ -1,7 +1,10 @@
-name: PR Validation
+name: Site Validation
 
 on:
   pull_request:
+    branches:
+      - master
+  push:
     branches:
       - master
 
@@ -9,7 +12,7 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +28,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
       - name: Run validation
-        run: npm run lint
+        run: npm test
+
+      - name: Upload browser traces
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
