@@ -2,15 +2,20 @@
 	"name": "horaciocome1.github.io",
 	"private": true,
 	"scripts": {
+		"test": "npm run lint && npm run test:e2e",
+		"test:e2e": "playwright test",
 		"lint": "npm run lint:js && npm run lint:css && npm run lint:html",
 		"lint:js": "eslint .",
 		"lint:css": "stylelint \"css/**/*.css\"",
-		"lint:html": "htmlhint \"index.html\""
+		"lint:html": "htmlhint \"index.html\" && html-validate \"index.html\""
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.12.1",
 		"@eslint/js": "^10.0.1",
+		"@playwright/test": "^1.62.1",
 		"eslint": "^10.8.0",
 		"globals": "^17.9.0",
+		"html-validate": "^11.6.2",
 		"htmlhint": "^1.9.2",
 		"stylelint": "^17.14.1"
 	}

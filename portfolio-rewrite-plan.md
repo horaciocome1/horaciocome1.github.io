@@ -11,9 +11,10 @@
 - Layout: single-screen compact card with a terminal-dashboard direction
 - Visual style: dark terminal-like
 - Content depth: slightly more detailed with project impact
-- Current work emphasis: lead with Markado
-- Secondary project emphasis: keep TrueVUE Cloud in selected work
-- Link priority: primary links are Email, GitHub, and LinkedIn; store links remain secondary
+- Primary audience: Android engineering roles
+- Current work emphasis: lead with the TrueVUE Cloud native Android migration
+- Secondary emphasis: use M-Pesa delivery to establish scale, then Kumbase and Markado to show backend breadth
+- Link priority: Email is primary, with GitHub, LinkedIn, and Medium as labeled secondary links
 - Tone: slightly personal, still professional
 
 ### Content Structure
@@ -31,26 +32,27 @@
    - Reliability / ownership signals
 
 3. Selected work
-   - Markado backend
    - TrueVUE Cloud migration
    - M-Pesa Android delivery
+   - Kumbase full-stack product
+   - Markado backend
    - Each entry includes scope, stack, and impact
 
 4. Links block
    - Email
    - GitHub
    - LinkedIn
-   - Google Play
-   - App Store
    - Medium
 
 ### Implementation Notes
 
-- Keep the site as static HTML and CSS.
+- Keep the site as progressively enhanced static HTML, CSS, and JavaScript.
 - Replace the current bright gradient and rounded marketing-card treatment with a denser dark panel layout.
 - Use monospace selectively for labels, metadata, and small UI details.
-- Keep the page responsive without introducing JavaScript.
+- Keep all content readable in a linear layout without JavaScript; enhance it into an accessible carousel when JavaScript is available.
 - Update only the files needed for the rewrite:
   - `index.html`
   - `css/styles.css`
+  - `app.js`
+  - social preview and favicon assets
   - `portfolio-rewrite-plan.md`

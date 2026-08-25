@@ -3,7 +3,7 @@ import globals from 'globals';
 
 export default [
 	{
-		ignores: ['node_modules/**'],
+		ignores: ['node_modules/**', 'playwright-report/**', 'test-results/**'],
 	},
 	{
 		files: ['**/*.js'],
@@ -13,6 +13,20 @@ export default [
 			globals: {
 				...globals.browser,
 				...globals.es2021,
+			},
+		},
+		rules: {
+			...js.configs.recommended.rules,
+		},
+	},
+	{
+		files: ['**/*.mjs'],
+		languageOptions: {
+			ecmaVersion: 'latest',
+			sourceType: 'module',
+			globals: {
+				...globals.browser,
+				...globals.node,
 			},
 		},
 		rules: {
