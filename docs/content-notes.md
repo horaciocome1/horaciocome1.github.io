@@ -5,7 +5,7 @@ Content refreshed on 3 November 2026 using the supplied `Horacio_Come_Senior_And
 ## Resume facts
 
 - Name: Horácio Flávio Comé Júnior; professional display name: Horácio Comé.
-- Senior Android Engineer, based in Belmonte, Portugal; production application experience since 2018.
+- Senior Android Engineer, based in Portugal; production application experience since 2018.
 - Johnson Controls / Sensormatic: Senior Software Engineer, January 2024–present.
 - Native Android technical ownership for the Xamarin-to-Kotlin migration of TrueVUE Cloud Analytics.
 - Independently redesigned the multi-database persistence and synchronization layer; unblocked end-to-end testing and fixed a long-standing resource leak.
@@ -26,8 +26,8 @@ The homepage, case study, diagram, and social preview consistently use the CV's 
 
 ## Assets and CV
 
-The two original SVG diagrams summarize documented areas of work. They are explanatory illustrations, not screenshots or proprietary system specifications. Social PNGs are rendered from these SVGs. The downloadable two-page PDF is rendered from the accessible online CV; the original DOCX and its embedded metadata are not published.
+The two original SVG diagrams summarize documented areas of work. They are explanatory illustrations, not screenshots or proprietary system specifications. Social PNGs are rendered from these SVGs. The downloadable CV is the supplied `Horacio_Come_Senior_Android_Engineer_CV.pdf`, published unchanged at `assets/horacio-come-cv.pdf`. The online CV is maintained as HTML; asset exports do not regenerate the PDF. The original DOCX is not published. Current location on the website and in structured data is limited to Portugal.
 
 ## Updating content
 
-Edit the static HTML directly. Update dates, scope, and figures consistently across the homepage, relevant case study, resume, diagrams, and social artwork. Refresh `sitemap.xml` last-modified dates when page content changes, then run `npm run build:assets` and `npm test`.
+Edit the static HTML directly. Update dates, scope, and figures consistently across the homepage, relevant case study, online CV, diagrams, and social artwork. Replace the downloadable PDF when a revised copy is supplied. Refresh `sitemap.xml` last-modified dates when page content changes. After changing SVG artwork, run `npm run build:assets`; validate changes with `npm test`.

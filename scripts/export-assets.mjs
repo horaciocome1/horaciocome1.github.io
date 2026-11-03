@@ -1,6 +1,5 @@
 import { chromium } from '@playwright/test';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -11,11 +10,7 @@ try {
 		await page.goto(pathToFileURL(path.join(root, source)).href);
 		await page.screenshot({ path: path.join(root, source.replace('.svg', '.png')), omitBackground: false });
 	}
-	await page.goto(pathToFileURL(path.join(root, 'resume/index.html')).href);
-	await page.emulateMedia({ media: 'print', colorScheme: 'light' });
-	await page.pdf({ path: path.join(root, 'assets/horacio-come-cv.pdf'), preferCSSPageSize: true, printBackground: true, tagged: true, outline: true });
-	const pdf = await readFile(path.join(root, 'assets/horacio-come-cv.pdf'));
-	console.log(`Exported three social preview images and CV (${Math.round(pdf.length / 1024)} KB).`);
+	console.log('Exported three social preview images.');
 } finally {
 	await browser.close();
 }

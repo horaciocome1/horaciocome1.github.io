@@ -56,6 +56,6 @@
   - `app.js`
   - social preview and favicon assets
   - `work/*/index.html` and original project diagrams
-  - `resume/index.html` and the generated PDF CV
+  - `resume/index.html` and the supplied PDF CV
   - `sitemap.xml`, browser regression tests, and CI validation
   - `portfolio-rewrite-plan.md`
