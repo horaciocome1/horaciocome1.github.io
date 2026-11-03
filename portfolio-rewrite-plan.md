@@ -2,15 +2,15 @@
 
 ### Direction
 
-- Rebuild the site as a compact single-screen card on desktop with natural vertical flow on mobile.
+- Present a linear, scrolling portfolio on desktop and mobile with direct work and email actions.
 - Shift the tone from broad portfolio marketing to a more factual engineer profile.
 - Use a dark, terminal-like visual language with a distinctive terminal-dashboard presentation.
 
 ### Accepted Choices
 
-- Layout: single-screen compact card with a terminal-dashboard direction
+- Layout: scrolling page with ordinary section navigation, two linked case studies, and an online/downloadable CV
 - Visual style: dark terminal-like
-- Content depth: slightly more detailed with project impact
+- Content depth: concise homepage summaries supported by detailed, resume-backed case studies
 - Primary audience: Android engineering roles
 - Current work emphasis: lead with the TrueVUE Cloud native Android migration
 - Secondary emphasis: use M-Pesa delivery to establish scale, then Kumbase and Markado to show backend breadth
@@ -36,7 +36,7 @@
    - M-Pesa Android delivery
    - Kumbase full-stack product
    - Markado backend
-   - Each entry includes scope, stack, and impact
+   - Each entry includes scope, technology, responsibilities, and documented outcomes
 
 4. Links block
    - Email
@@ -47,12 +47,15 @@
 ### Implementation Notes
 
 - Keep the site as progressively enhanced static HTML, CSS, and JavaScript.
-- Replace the current bright gradient and rounded marketing-card treatment with a denser dark panel layout.
+- Preserve the terminal palette and restrained panels, with a legible light theme and generous room for content.
 - Use monospace selectively for labels, metadata, and small UI details.
-- Keep all content readable in a linear layout without JavaScript; enhance it into an accessible carousel when JavaScript is available.
-- Update only the files needed for the rewrite:
+- Keep all content readable in a linear layout with and without JavaScript. Use native fragment links for navigation and browser history.
+- Maintain the files needed for the portfolio:
   - `index.html`
   - `css/styles.css`
   - `app.js`
   - social preview and favicon assets
+  - `work/*/index.html` and original project diagrams
+  - `resume/index.html` and the supplied PDF CV
+  - `sitemap.xml`, browser regression tests, and CI validation
   - `portfolio-rewrite-plan.md`

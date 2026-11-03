@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">M-Pesa Android engineering at WIT Software</title>
+  <desc id="desc">Kotlin and Java feature development in electronic identity verification, device management, and lending. The products served over two million users during 2021 to 2023.</desc>
+  <rect width="1200" height="630" fill="#101b15"/>
+  <path d="M0 50H1200M0 150H1200M0 250H1200M0 350H1200M0 450H1200M0 550H1200M100 0V630M300 0V630M500 0V630M700 0V630M900 0V630M1100 0V630" stroke="#1b2b21"/>
+  <g font-family="Arial, sans-serif">
+    <text x="60" y="77" font-size="24" fill="#94edb0" letter-spacing="3">FINTECH / ANDROID DELIVERY</text>
+    <text x="60" y="145" font-size="54" font-weight="700" fill="#ecf0ed">M-Pesa Android</text>
+    <rect x="60" y="201" width="1080" height="86" rx="10" fill="#1b3324" stroke="#94edb0"/>
+    <text x="600" y="255" font-size="34" font-weight="700" fill="#94edb0" text-anchor="middle">Kotlin + Java</text>
+    <path d="M600 287V325M220 325H980M220 325V351M600 325V351M980 325V351" stroke="#496452" stroke-width="2" fill="none"/>
+    <g fill="#101512" stroke="#3b5142"><rect x="60" y="351" width="320" height="92" rx="10"/><rect x="440" y="351" width="320" height="92" rx="10"/><rect x="820" y="351" width="320" height="92" rx="10"/></g>
+    <g fill="#ecf0ed" font-size="27" text-anchor="middle"><text x="220" y="405">Identity / eKYC</text><text x="600" y="405">Device management</text><text x="980" y="405">Loan applications</text></g>
+    <text x="60" y="490" font-size="24" fill="#b4c3b9">MVVM · repositories · Coroutines · networking · local data</text>
+    <text x="60" y="554" font-size="42" font-weight="700" fill="#94edb0">2M+ users</text>
+    <text x="360" y="550" font-size="25" fill="#b4c3b9">Product reach during 2021–2023</text>
+    <text x="60" y="597" font-size="20" fill="#b4c3b9">Horácio Comé · Software Engineer at WIT Software</text>
+  </g>
+</svg>

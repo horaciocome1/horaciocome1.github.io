@@ -1,420 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta
-			name="description"
-			content="Android engineer building reliable Kotlin applications, native migrations, and device-connected products, with backend experience in Ktor and PostgreSQL."
-		>
-		<meta name="robots" content="index,follow,max-image-preview:large">
-		<meta name="author" content="Horácio Comé">
-		<link rel="canonical" href="https://horacioco.me/">
-		<link rel="alternate" hreflang="en" href="https://horacioco.me/">
-		<link rel="sitemap" type="application/xml" href="https://horacioco.me/sitemap.xml">
-		<link rel="me" href="https://github.com/horaciocome1">
-		<link rel="me" href="https://www.linkedin.com/in/horaciocome1">
-		<link rel="me" href="https://horaciocome1.medium.com">
-		<meta name="theme-color" content="#050505">
-		<script>
-			(() => {
-				const themeColors = {
-					dark: '#050505',
-					light: '#f4efe6',
-				};
-				let storedTheme = null;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horácio Comé | Senior Android Engineer in Portugal</title>
+  <meta name="description" content="Senior Android engineer in Portugal building Kotlin apps since 2018. Explore TrueVUE Cloud and M-Pesa case studies, experience, and contact details.">
+  <meta name="author" content="Horácio Comé">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#090c0b">
+  <link rel="canonical" href="https://horacioco.me/">
+  <link rel="sitemap" type="application/xml" href="https://horacioco.me/sitemap.xml">
+  <link rel="me" href="https://github.com/horaciocome1">
+  <link rel="me" href="https://www.linkedin.com/in/horaciocome1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Horácio Comé | Senior Android Engineer in Portugal">
+  <meta property="og:description" content="Senior Android engineer in Portugal building Kotlin apps since 2018. Explore TrueVUE Cloud and M-Pesa case studies, experience, and contact details.">
+  <meta property="og:url" content="https://horacioco.me/">
+  <meta property="og:site_name" content="Horácio Comé">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://horacioco.me/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Horácio Comé | Senior Android Engineer in Portugal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Horácio Comé | Senior Android Engineer in Portugal">
+  <meta name="twitter:description" content="Senior Android engineer in Portugal building Kotlin apps since 2018. Explore TrueVUE Cloud and M-Pesa case studies, experience, and contact details.">
+  <meta name="twitter:image" content="https://horacioco.me/og-image.png">
+  <meta name="twitter:image:alt" content="Horácio Comé | Senior Android Engineer in Portugal">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script>
+    (() => {
+      let saved = null;
+      try { saved = window.localStorage.getItem('portfolio-theme'); } catch { /* Use the system preference. */ }
+      const theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f8f6ef' : '#090c0b';
+    })();
+  </script>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="app.js" defer></script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://horacioco.me/#person",
+      "name": "Horácio Comé",
+      "alternateName": [
+        "Horacio Come",
+        "Horácio Flávio Comé Júnior"
+      ],
+      "url": "https://horacioco.me/",
+      "jobTitle": "Senior Android Engineer",
+      "email": "mailto:mail@horacioco.me",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PT"
+      },
+      "knowsAbout": [
+        "Kotlin",
+        "Android",
+        "Android architecture",
+        "Jetpack Compose",
+        "Local persistence",
+        "Data synchronization",
+        "Ktor",
+        "PostgreSQL"
+      ],
+      "sameAs": [
+        "https://github.com/horaciocome1",
+        "https://www.linkedin.com/in/horaciocome1",
+        "https://horaciocome1.medium.com"
+      ]
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://horacioco.me/#page",
+      "url": "https://horacioco.me/",
+      "name": "Horácio Comé | Senior Android Engineer in Portugal",
+      "description": "Senior Android engineer in Portugal building Kotlin apps since 2018. Explore TrueVUE Cloud and M-Pesa case studies, experience, and contact details.",
+      "inLanguage": "en",
+      "dateModified": "2026-11-03",
+      "mainEntity": {
+        "@id": "https://horacioco.me/#person"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://horacioco.me/#website",
+      "url": "https://horacioco.me/",
+      "name": "Horácio Comé",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://horacioco.me/#person"
+      }
+    }
+  ]
+}</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Horácio Comé home"><span class="brand-mark" aria-hidden="true">&gt;_</span>Horácio Comé</a>
+    <nav class="site-nav" id="site-navigation" aria-label="Portfolio" data-navigation>
+      <a href="#about" data-section-link>About</a>
+<a href="#work" data-section-link>Work</a>
+<a href="#experience" data-section-link>Experience</a>
+<a href="#skills" data-section-link>Skills</a>
+<a href="#contact" data-section-link>Contact</a>
 
-				try {
-					const savedTheme = window.localStorage.getItem('portfolio-theme');
-					if (savedTheme === 'light' || savedTheme === 'dark') {
-						storedTheme = savedTheme;
-					}
-				} catch {
-					// Ignore storage access issues and fall back to the system theme.
-				}
+    </nav>
+    <div class="header-actions">
+      <a class="icon-button" href="mailto:mail@horacioco.me" aria-label="Email Horácio" title="Email Horácio"><svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></a>
+      <button class="icon-button theme-toggle" type="button" aria-label="Use light theme" data-theme-toggle><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path></svg><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8 8 0 0 1 8.8 4 8 8 0 1 0 20 15.2Z"></path></svg></button>
+      <button class="icon-button menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle><svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+  </div>
+</header>
+<main class="container" id="main-content" tabindex="-1">
+  <span class="fragment-alias" id="intro" aria-hidden="true"></span>
+  <section class="hero" id="about" aria-labelledby="intro-title" tabindex="-1" data-nav-section>
+    <div>
+      <p class="eyebrow">Senior Android Engineer · Portugal</p>
+      <h1 id="intro-title">Horácio Comé</h1>
+      <p class="hero-tagline">Reliable Android, from data to devices.</p>
+      <p class="hero-summary">I’ve built production apps in retail and fintech since 2018. Today I lead native Android development for TrueVUE Cloud, with a focus on local data, synchronization, and device workflows.</p>
+      <div class="actions">
+        <a class="button button-primary" href="#work">View my work <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6"></path></svg></a>
+        <a class="button" href="mailto:mail@horacioco.me">Email me <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></a>
+      </div>
+      <a class="text-link resume-link" href="/assets/horacio-come-cv.pdf" download>Download CV <span>(PDF)</span> <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"></path></svg></a>
+    </div>
+    <aside class="focus-card" aria-labelledby="focus-title">
+      <div class="focus-card-bar"><span class="terminal-label">$ current-focus</span><span class="window-dots" aria-hidden="true"><span></span><span></span><span></span></span></div>
+      <div class="focus-card-body">
+        <p class="meta-label">Native Android technical owner</p>
+        <h2 id="focus-title">TrueVUE Cloud</h2>
+        <div class="migration-path" role="img" aria-label="Migration from Xamarin to Kotlin Android"><span>Xamarin</span><span class="path-arrow" aria-hidden="true">→</span><span><strong>Kotlin / Android</strong></span></div>
+        <p class="focus-detail">Multi-database persistence, synchronization, app lifecycle, and retail device workflows.</p>
+        <a class="text-link" href="/work/truevue-android-migration/">Explore the migration <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a>
+      </div>
+    </aside>
+  </section>
+  <dl class="proof-strip">
+    <div><dt>Since 2018</dt><dd>Building production Android applications</dd></div>
+    <div><dt>2M+ users</dt><dd>M-Pesa product reach during my time at WIT, 2021–2023</dd></div>
+    <div><dt>~90 / 100</dt><dd>Legacy-to-native functionality changes delivered in FY25</dd></div>
+  </dl>
 
-				const prefersLightTheme =
-					typeof window.matchMedia === 'function' &&
-					window.matchMedia('(prefers-color-scheme: light)').matches;
-				const theme = storedTheme ?? (prefersLightTheme ? 'light' : 'dark');
+  <section class="section" id="work" aria-labelledby="work-title" tabindex="-1" data-nav-section>
+    <div class="section-heading">
+      <div><span class="section-index">01 / Selected work</span><h2 id="work-title">Engineering in practice.</h2></div>
+      <p class="section-description">Two Android case studies, from a native retail migration to mobile money at scale.</p>
+    </div>
+    <div class="project-grid">
+      <article class="project-card" aria-labelledby="truevue-title">
+        <img class="project-art" src="assets/truevue-migration.svg" width="1200" height="630" loading="lazy" alt="Xamarin to Kotlin migration covering persistence, synchronization, lifecycle, and feature parity.">
+        <div class="project-body">
+          <p class="project-meta">Johnson Controls / Sensormatic · Jan 2024–present</p>
+          <h3 id="truevue-title">TrueVUE Cloud</h3>
+          <p>Technical ownership of a Xamarin-to-Kotlin Android migration for a retail analytics product with complex device workflows.</p>
+          <p class="project-result">Rebuilt the persistence and synchronization layer, unblocking end-to-end testing.</p>
+          <ul class="tag-list" aria-label="TrueVUE technologies"><li>Kotlin</li><li>Android</li><li>MVVM</li><li>Local data</li></ul>
+          <div class="project-links"><a class="text-link" href="/work/truevue-android-migration/">Read TrueVUE case study <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a><a href="https://www.sensormatic.com/landing/truevue-incloud">Product website ↗</a></div>
+        </div>
+      </article>
+      <article class="project-card" aria-labelledby="mpesa-title">
+        <img class="project-art" src="assets/mpesa-android.svg" width="1200" height="630" loading="lazy" alt="M-Pesa Android feature areas: electronic identity verification, device management, and loans.">
+        <div class="project-body">
+          <p class="project-meta">WIT Software · Aug 2021–Dec 2023</p>
+          <h3 id="mpesa-title">M-Pesa Android</h3>
+          <p>Built electronic identity verification, device management, and loan features in production mobile-money applications.</p>
+          <p class="project-result">Contributed to products serving over 2 million users across five national markets.</p>
+          <ul class="tag-list" aria-label="M-Pesa technologies"><li>Kotlin / Java</li><li>MVVM</li><li>Coroutines</li><li>Fintech</li></ul>
+          <div class="project-links"><a class="text-link" href="/work/mpesa-android/">Read M-Pesa case study <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a></div>
+        </div>
+      </article>
+    </div>
+    <h3 class="independent-heading">Independent Kotlin products</h3>
+    <div class="independent-grid">
+      <article class="independent-project" aria-labelledby="kumbase-title">
+        <p class="project-meta">Kumbase · Full-stack product ownership</p>
+        <h3 id="kumbase-title">PostgreSQL backups with a clear restore path.</h3>
+        <p>Built a managed backup service with scheduled jobs, encrypted artifacts, and portable downloads for PostgreSQL restores.</p>
+        <ul class="tag-list" aria-label="Kumbase technologies"><li>Kotlin / Ktor</li><li>PostgreSQL</li><li>Background jobs</li></ul>
+        <a class="text-link" href="https://kumbase.com">Visit Kumbase <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a>
+      </article>
+      <article class="independent-project" aria-labelledby="markado-title">
+        <p class="project-meta">Markado · Current backend development</p>
+        <h3 id="markado-title">The backend behind everyday bookings.</h3>
+        <p>Developed scheduling, guest, check-in, payment, messaging, and calendar-sync flows for a business appointment platform.</p>
+        <ul class="tag-list" aria-label="Markado technologies"><li>Ktor / Exposed</li><li>PostgreSQL</li><li>Stripe</li><li>Integrations</li></ul>
+        <a class="text-link" href="https://www.markado.pt/">Visit Markado <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a>
+      </article>
+    </div>
+  </section>
 
-				document.documentElement.dataset.theme = theme;
-				document.documentElement.style.colorScheme = theme;
-				document
-					.querySelector('meta[name="theme-color"]')
-					?.setAttribute('content', themeColors[theme]);
-			})();
-		</script>
+  <span class="fragment-alias" id="outcomes" aria-hidden="true"></span>
+  <section class="section" id="experience" aria-labelledby="experience-title" tabindex="-1" data-nav-section>
+    <div class="section-heading"><div><span class="section-index">02 / Experience</span><h2 id="experience-title">Building, owning, and helping teams deliver.</h2></div></div>
+    <div class="experience-layout">
+      <ol class="timeline">
+        <li><h3>Johnson Controls / Sensormatic</h3><p class="timeline-role">Senior Software Engineer</p><p class="timeline-date"><time datetime="2024-01">Jan 2024</time>–present · Portugal</p><p class="timeline-summary">Native Android technical ownership for TrueVUE Cloud Analytics. Persistence and synchronization, lifecycle management, release readiness, and mentoring engineers.</p></li>
+        <li><h3>WIT Software</h3><p class="timeline-role">Software Engineer</p><p class="timeline-date"><time datetime="2021-08">Aug 2021</time>–<time datetime="2023-12">Dec 2023</time> · Coimbra, Portugal</p><p class="timeline-summary">Android feature development for M-Pesa mobile products, including identity verification, device management, and lending.</p></li>
+        <li><h3>Advanced Intelligent Systems</h3><p class="timeline-role">Commissioning Specialist</p><p class="timeline-date"><time datetime="2019-12">Dec 2019</time>–<time datetime="2021-07">Jul 2021</time> · Maputo, Mozambique</p></li>
+        <li><h3>Plings</h3><p class="timeline-role">Software Developer</p><p class="timeline-date"><time datetime="2018-10">Oct 2018</time>–<time datetime="2019-10">Oct 2019</time> · Maputo, Mozambique</p></li>
+      </ol>
+      <aside class="work-style" aria-labelledby="style-title">
+        <span class="fragment-alias" id="style" aria-hidden="true"></span>
+        <h3 id="style-title">How I work</h3>
+        <p>I take ownership from debugging through release validation. I like reducing moving parts and leaving code that other engineers can understand and maintain.</p>
+        <p>Code reviews, collaborative debugging, and onboarding are part of the work. A fix is more useful when the team understands why it works.</p>
+        <div class="education"><h3>Education</h3><p>BSc, Computer and Telecommunications Engineering</p><p>Universidade A Politécnica<br>2016–2019 · Maputo, Mozambique</p></div>
+      </aside>
+    </div>
+  </section>
 
-		<meta property="og:title" content="Horácio Comé | Android Engineer">
-		<meta
-			property="og:description"
-			content="Kotlin Android engineer focused on native migrations, reliable product flows, and device-connected applications."
-		>
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://horacioco.me/">
-		<meta property="og:locale" content="en_US">
-		<meta property="og:site_name" content="Horácio Comé">
-		<meta property="og:image" content="https://horacioco.me/og-image.png">
-		<meta property="og:image:secure_url" content="https://horacioco.me/og-image.png">
-		<meta property="og:image:type" content="image/png">
-		<meta property="og:image:width" content="1200">
-		<meta property="og:image:height" content="630">
-		<meta property="og:image:alt" content="Terminal-style preview card for Horácio Comé, Android Engineer">
+  <span class="fragment-alias" id="profile" aria-hidden="true"></span>
+  <section class="section" id="skills" aria-labelledby="skills-title" tabindex="-1" data-nav-section>
+    <div class="section-heading"><div><span class="section-index">03 / Skills</span><h2 id="skills-title">Android first. Kotlin beyond the app.</h2></div></div>
+    <div class="skill-grid">
+      <div class="skill-group"><h3>Android development</h3><p>Kotlin, Java, Android SDK, Jetpack Compose, Coroutines, Flow / StateFlow, ViewModel, CameraX.</p></div>
+      <div class="skill-group"><h3>Architecture &amp; local data</h3><p>Model–View–ViewModel (MVVM), repositories, Room / SQLite, multi-database design, Retrofit, Gson, Hilt, Koin.</p></div>
+      <div class="skill-group"><h3>Testing &amp; delivery</h3><p>JUnit, MockK, continuous integration and delivery (CI/CD), release-build validation, Google Play Console, code reviews, and mentoring.</p></div>
+      <div class="skill-group"><h3>Backend &amp; multiplatform</h3><p>Kotlin Multiplatform (KMP), Ktor, PostgreSQL, Exposed, authentication, background jobs, and payment, messaging, and calendar integrations.</p></div>
+    </div>
+  </section>
 
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Horácio Comé | Android Engineer">
-		<meta
-			name="twitter:description"
-			content="Kotlin Android engineer focused on native migrations, reliable product flows, and device-connected applications."
-		>
-		<meta name="twitter:url" content="https://horacioco.me/">
-		<meta name="twitter:image" content="https://horacioco.me/og-image.png">
-		<meta name="twitter:image:alt" content="Terminal-style preview card for Horácio Comé, Android Engineer">
-
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@graph": [
-					{
-						"@type": "WebSite",
-						"@id": "https://horacioco.me/#website",
-						"url": "https://horacioco.me/",
-						"name": "Horácio Comé",
-						"description": "Portfolio site for Horácio Comé, Android engineer.",
-						"inLanguage": "en",
-						"about": { "@id": "https://horacioco.me/#person" },
-						"publisher": { "@id": "https://horacioco.me/#person" }
-					},
-					{
-						"@type": "ProfilePage",
-						"@id": "https://horacioco.me/#profile-page",
-						"url": "https://horacioco.me/",
-						"name": "Horácio Comé | Android Engineer",
-						"inLanguage": "en",
-						"isPartOf": { "@id": "https://horacioco.me/#website" },
-						"mainEntity": { "@id": "https://horacioco.me/#person" }
-					},
-					{
-						"@type": "Person",
-						"@id": "https://horacioco.me/#person",
-						"name": "Horácio Comé",
-						"alternateName": "Horacio Come",
-						"url": "https://horacioco.me/",
-						"jobTitle": "Android Engineer",
-						"description": "Kotlin Android engineer focused on native migrations, reliable product flows, and device-connected applications.",
-						"email": "mailto:mail@horacioco.me",
-						"knowsAbout": ["Kotlin", "Android", "Native Android", "Backend Systems", "Ktor", "PostgreSQL"],
-						"mainEntityOfPage": { "@id": "https://horacioco.me/#profile-page" },
-						"sameAs": [
-							"https://github.com/horaciocome1",
-							"https://www.linkedin.com/in/horaciocome1",
-							"https://horaciocome1.medium.com",
-							"https://play.google.com/store/apps/dev?id=8639907477820496824",
-							"https://apps.apple.com/pt/developer/horacio-flavio-come-junior/id1748627513"
-						]
-					}
-				]
-			}
-		</script>
-
-		<title>Horácio Comé | Android Engineer</title>
-
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-		<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/styles.css">
-		<script src="app.js" defer></script>
-	</head>
-	<body>
-		<a class="skip-link" href="#intro-title">Skip to profile</a>
-		<svg class="icon-sprite" aria-hidden="true">
-			<symbol id="icon-code" viewBox="0 0 24 24">
-				<path d="m8 9-3 3 3 3m8-6 3 3-3 3m-2-10-4 14"></path>
-			</symbol>
-			<symbol id="icon-moon" viewBox="0 0 24 24">
-				<path d="M20 15.2A8 8 0 0 1 8.8 4 8 8 0 1 0 20 15.2Z"></path>
-			</symbol>
-			<symbol id="icon-sun" viewBox="0 0 24 24">
-				<circle cx="12" cy="12" r="4"></circle>
-				<path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-			</symbol>
-			<symbol id="icon-mail" viewBox="0 0 24 24">
-				<rect x="3" y="5" width="18" height="14" rx="2"></rect>
-				<path d="m4 7 8 6 8-6"></path>
-			</symbol>
-			<symbol id="icon-branch" viewBox="0 0 24 24">
-				<circle cx="7" cy="5" r="2"></circle>
-				<circle cx="17" cy="7" r="2"></circle>
-				<circle cx="7" cy="19" r="2"></circle>
-				<path d="M7 7v10m2-8h3a5 5 0 0 0 5-5"></path>
-			</symbol>
-			<symbol id="icon-network" viewBox="0 0 24 24">
-				<circle cx="6" cy="6" r="2"></circle>
-				<circle cx="18" cy="6" r="2"></circle>
-				<circle cx="12" cy="18" r="2"></circle>
-				<path d="m7.7 7.1 3.2 8.9m5.4-8.9-3.2 8.9M8 6h8"></path>
-			</symbol>
-			<symbol id="icon-article" viewBox="0 0 24 24">
-				<path d="M5 3h10l4 4v14H5Z"></path>
-				<path d="M15 3v5h4M8 12h8m-8 4h8"></path>
-			</symbol>
-		</svg>
-		<main class="page">
-			<h1 class="sr-only">Horácio Comé, Android Engineer</h1>
-			<section class="workspace" id="top" aria-label="Horacio Come portfolio terminal">
-				<header class="window-bar" aria-label="Terminal window header">
-					<div class="window-controls" aria-hidden="true">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-					<p class="window-title">~/horacio/portfolio</p>
-					<div class="window-actions">
-						<p class="window-meta">stable build</p>
-						<a
-							class="project-link"
-							href="https://github.com/horaciocome1/horaciocome1.github.io"
-							aria-label="View this site's source code"
-							title="View this site project on GitHub"
-						>
-							<svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg>
-							<span class="project-link-label">site source</span>
-						</a>
-						<button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Switch to light mode" data-theme-toggle>
-							<svg class="icon theme-toggle-icon theme-toggle-icon-moon" aria-hidden="true"><use href="#icon-moon"></use></svg>
-							<span class="theme-toggle-track" aria-hidden="true">
-								<span class="theme-toggle-thumb"></span>
-							</span>
-							<svg class="icon theme-toggle-icon theme-toggle-icon-sun" aria-hidden="true"><use href="#icon-sun"></use></svg>
-						</button>
-						<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
-					</div>
-					<div class="mobile-menu" id="mobile-menu" hidden>
-						<p class="command-line"><span class="prompt">$</span> ls workspace/</p>
-						<nav class="mobile-menu-nav" aria-label="Mobile portfolio navigation">
-							<a class="menu-link is-active" data-tree-link href="#intro">whoami</a>
-							<a class="menu-link" data-tree-link href="#work">selected-work/</a>
-							<a class="menu-link" data-tree-link href="#profile">quick-facts.json</a>
-							<a class="menu-link" data-tree-link href="#outcomes">android-track-record.log</a>
-							<a class="menu-link" data-tree-link href="#style">work-style.md</a>
-						</nav>
-						<a
-							class="project-link mobile-project-link"
-							href="https://github.com/horaciocome1/horaciocome1.github.io"
-							aria-label="View this site's source code"
-							title="View this site project on GitHub"
-						>
-							<svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg>
-							<span class="project-link-label">site source</span>
-						</a>
-					</div>
-				</header>
-
-				<div class="workspace-body">
-					<section class="session-bar" aria-label="Engineering highlights">
-						<div class="session-chip is-online"><span>android</span><strong>since 2018</strong></div>
-						<div class="session-chip is-online"><span>markets</span><strong>5 shipped</strong></div>
-						<div class="session-chip is-active"><span>focus</span><strong>native migration</strong></div>
-						<div class="session-chip is-open"><span>backend</span><strong>Ktor + PostgreSQL</strong></div>
-					</section>
-
-					<nav class="rail-nav" aria-label="Portfolio slide navigation">
-						<button class="rail-button" type="button" data-rail-direction="prev" aria-label="Previous card">&larr;</button>
-						<div class="rail-progress" data-rail-progress role="group" aria-label="Choose a portfolio slide"></div>
-						<p class="rail-count" data-rail-count aria-hidden="true">1 / 5</p>
-						<button class="rail-button" type="button" data-rail-direction="next" aria-label="Next card">&rarr;</button>
-						<p class="sr-only" data-rail-announcement aria-live="polite" aria-atomic="true"></p>
-					</nav>
-
-					<div class="workspace-grid">
-					<div class="main-stack">
-						<section class="card-rail-shell" aria-roledescription="carousel" aria-label="Portfolio sections">
-							<div class="card-rail" data-card-rail>
-								<section class="terminal-panel rail-card intro-panel is-active" id="intro" data-rail-card data-card-label="whoami" aria-roledescription="slide" aria-label="1 of 5: Introduction">
-									<p class="command-line"><span class="prompt">$</span> whoami</p>
-									<div class="command-output">
-										<p class="eyebrow">ANDROID ENGINEER</p>
-										<h2 class="profile-name" id="intro-title" tabindex="-1">Horácio Comé</h2>
-										<p class="summary">
-											I build Kotlin Android apps, native migration work, and backend systems for products that get messy once
-											they meet real users. I care about reliable flows, maintainable code, and staying
-											close enough to the product to solve the actual problem instead of the neat one.
-										</p>
-										<p class="note-line">
-											Right now I am focused on Kotlin Android migration work for TrueVUE Cloud and
-											Ktor and PostgreSQL backend development for Markado.
-										</p>
-									</div>
-								</section>
-
-								<section class="terminal-panel rail-card work-panel" id="work" data-rail-card data-card-label="selected-work/" aria-roledescription="slide" aria-label="2 of 5: Selected work">
-									<p class="command-line"><span class="prompt">$</span> ls selected-work/</p>
-									<div class="command-output">
-										<h2 id="work-title" tabindex="-1">Selected Work</h2>
-										<p class="section-note">Android delivery first, with backend ownership as supporting breadth.</p>
-										<div class="work-list">
-									<article class="work-item">
-										<div class="work-topline">
-											<div>
-												<p class="work-file">truevue-migration.kt</p>
-												<h3>TrueVUE Cloud Migration</h3>
-											</div>
-											<a href="https://www.sensormatic.com/landing/truevue-incloud">view project</a>
-										</div>
-										<p class="work-meta">role: Android migration lead / current work</p>
-										<div class="impact-badges"><span>android</span><span>kotlin</span><span>native migration</span><span>RAIN RFID</span></div>
-										<p>
-											Leading the move from a cross-platform base to Kotlin Android, creating a more
-											maintainable native foundation with better control over device-connected retail workflows.
-										</p>
-										<p class="stack-line">stack: Kotlin, Android, native architecture, migration strategy</p>
-									</article>
-									<article class="work-item">
-										<div class="work-topline">
-											<div>
-												<p class="work-file">mpesa-multi-market.kt</p>
-												<h3>M-Pesa Multi-Market Android</h3>
-											</div>
-											<a href="https://en.wikipedia.org/wiki/M-Pesa">about M-Pesa</a>
-										</div>
-										<p class="work-meta">scope: five national markets / around 5 million users</p>
-										<div class="impact-badges"><span>fintech</span><span>android</span><span>5 markets</span><span>reliability</span></div>
-										<p>
-											Shipped Android experiences for Mozambique, Lesotho, Tanzania, DRC, and Ghana,
-											where dependable mobile-money flows matter in everyday use, not only at launch.
-										</p>
-										<p class="stack-line">stack: Android, fintech, multi-market delivery, reliability</p>
-									</article>
-									<article class="work-item">
-										<div class="work-topline">
-											<div>
-												<p class="work-file">kumbase-platform.kt</p>
-												<h3>Kumbase</h3>
-											</div>
-											<a href="https://kumbase.com">kumbase.com</a>
-										</div>
-										<p class="work-meta">role: full-stack product ownership</p>
-										<div class="impact-badges"><span>saas</span><span>postgresql</span><span>backups</span><span>security-first</span></div>
-										<p>
-											Built a security-first SaaS for automated PostgreSQL backups, encrypted artifact
-											storage, and portable restore downloads, centered on dependable recovery workflows.
-										</p>
-										<p class="stack-line">stack: Kotlin, PostgreSQL, backup automation, encrypted storage</p>
-									</article>
-									<article class="work-item">
-										<div class="work-topline">
-											<div>
-												<p class="work-file">markado-backend.kt</p>
-												<h3>Markado Backend</h3>
-											</div>
-											<a href="https://markado.pt">markado.pt</a>
-										</div>
-										<p class="work-meta">role: backend product development / current work</p>
-										<div class="impact-badges"><span>backend</span><span>scheduling</span><span>payments</span><span>integrations</span></div>
-										<p>
-											Built scheduling, guest, check-in, payment, messaging, and calendar-sync flows
-											that hold together under real operational use.
-										</p>
-										<p class="stack-line">stack: Ktor, PostgreSQL, Exposed, Stripe, Twilio, SendGrid</p>
-									</article>
-										</div>
-									</div>
-								</section>
-
-								<section class="terminal-panel rail-card status-panel" id="profile" data-rail-card data-card-label="quick-facts.json" aria-roledescription="slide" aria-label="3 of 5: Quick facts">
-									<p class="command-line"><span class="prompt">$</span> cat quick-facts.json</p>
-									<div class="command-output">
-										<h2 id="status-title" tabindex="-1">At A Glance</h2>
-										<ul class="status-list">
-									<li class="status-row"><span class="key">experience</span><span class="value">Android engineering since 2018</span></li>
-									<li class="status-row"><span class="key">primary</span><span class="value">Kotlin and native Android</span></li>
-									<li class="status-row"><span class="key">mobile</span><span class="value">KMP, CMP, Android native, Compose, Hilt, Koin, Retrofit, Ktor</span></li>
-									<li class="status-row"><span class="key">server</span><span class="value">KMP, Ktor, PostgreSQL, Exposed, auth, integrations, background jobs</span></li>
-								</ul>
-									</div>
-								</section>
-
-								<section class="terminal-panel rail-card history-panel" id="outcomes" data-rail-card data-card-label="android-track-record.log" aria-roledescription="slide" aria-label="4 of 5: Android track record">
-									<p class="command-line"><span class="prompt">$</span> tail -n 4 outcomes.log</p>
-									<div class="command-output">
-										<h2 id="history-title" tabindex="-1">Android Track Record</h2>
-										<ol class="history-list">
-									<li><span class="history-index">01</span><span>Leading a cross-platform-to-native Kotlin migration for a device-connected retail product.</span></li>
-									<li><span class="history-index">02</span><span>Shipped mobile-money Android experiences across five national markets serving around 5 million users.</span></li>
-									<li><span class="history-index">03</span><span>Worked with external-device and RAIN RFID workflows where platform control and reliability matter.</span></li>
-									<li><span class="history-index">04</span><span>Extended Android ownership with Kotlin backend and PostgreSQL product development.</span></li>
-								</ol>
-									</div>
-								</section>
-
-								<section class="terminal-panel rail-card notes-panel" id="style" data-rail-card data-card-label="work-style.md" aria-roledescription="slide" aria-label="5 of 5: Work style">
-									<p class="command-line"><span class="prompt">$</span> cat notes/work-style.md</p>
-									<div class="command-output">
-										<h2 id="notes-title" tabindex="-1">How I Work</h2>
-										<p>
-									I prefer software that survives real usage and still makes sense later. Usually that
-									means reducing moving parts, staying close to the product problem, and choosing
-									solutions a team can keep operating after the launch energy is gone.
-								</p>
-									</div>
-								</section>
-							</div>
-						</section>
-					</div>
-
-					<aside class="sidebar-stack" aria-label="Project file tree navigation">
-						<section class="terminal-panel side-panel nav-panel" aria-labelledby="tree-title">
-							<p class="command-line"><span class="prompt">$</span> tree -L 2 workspace/</p>
-							<div class="command-output">
-								<p class="panel-title" id="tree-title">Project Tree</p>
-								<nav class="tree-nav" aria-label="Project tree navigation">
-									<ul class="tree-list">
-										<li><span class="tree-dir">workspace</span></li>
-										<li><a class="tree-link is-active" data-tree-link href="#intro"><span class="tree-indent">|-</span><span class="tree-file">whoami</span></a></li>
-										<li><a class="tree-link" data-tree-link href="#work"><span class="tree-indent">|-</span><span class="tree-file">selected-work/</span></a></li>
-										<li><a class="tree-link" data-tree-link href="#profile"><span class="tree-indent">|-</span><span class="tree-file">quick-facts.json</span></a></li>
-										<li><a class="tree-link" data-tree-link href="#outcomes"><span class="tree-indent">|-</span><span class="tree-file">android-track-record.log</span></a></li>
-										<li><a class="tree-link" data-tree-link href="#style"><span class="tree-indent">|-</span><span class="tree-file">work-style.md</span></a></li>
-									</ul>
-								</nav>
-							</div>
-						</section>
-					</aside>
-
-					<aside class="detail-stack" aria-label="Contact pane">
-						<section class="terminal-panel links-panel" id="contact" aria-labelledby="links-title">
-							<p class="command-line"><span class="prompt">$</span> open contact --preferred email</p>
-							<div class="command-output">
-								<h2 id="links-title">Reach Out</h2>
-								<nav aria-label="Contact and professional profiles">
-									<ul class="contact-list">
-										<li class="contact-list-primary"><a href="mailto:mail@horacioco.me"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg><span><strong>Email Horácio</strong><small>mail@horacioco.me</small></span></a></li>
-										<li><a href="https://github.com/horaciocome1"><svg class="icon" aria-hidden="true"><use href="#icon-branch"></use></svg><span>GitHub</span></a></li>
-										<li><a href="https://www.linkedin.com/in/horaciocome1"><svg class="icon" aria-hidden="true"><use href="#icon-network"></use></svg><span>LinkedIn</span></a></li>
-										<li><a href="https://horaciocome1.medium.com"><svg class="icon" aria-hidden="true"><use href="#icon-article"></use></svg><span>Medium</span></a></li>
-									</ul>
-								</nav>
-								<p class="command-line command-line-inline"><span class="prompt">$</span> current-mode</p>
-								<p class="mode-output">android / kotlin / backend / product ownership</p>
-							</div>
-						</section>
-					</aside>
-				</div>
-			</div>
-
-			</section>
-
-			<footer class="page-footer">
-				<p>&copy; <span id="copyright-year">2026</span> Horácio Flávio Comé Júnior</p>
-			</footer>
-
-		</main>
-	</body>
+  <section class="contact-section" id="contact" aria-labelledby="contact-title" tabindex="-1" data-nav-section>
+    <div>
+      <span class="section-index">04 / Contact</span>
+      <h2 id="contact-title">Let’s talk Android.</h2>
+      <p>For Android roles, native migrations, or Kotlin product work, email me with a little context about what you’re building.</p>
+      <a class="contact-email" href="mailto:mail@horacioco.me">mail@horacioco.me</a>
+      <div class="contact-actions"><a class="button button-primary" href="mailto:mail@horacioco.me">Write an email <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></a><button class="button copy-email" type="button" data-copy-email>Copy email address</button></div>
+      <p class="copy-status" data-copy-status role="status" aria-live="polite"></p>
+    </div>
+    <div class="contact-details">
+      <p>Based in Portugal<br>Time zone: Europe/Lisbon</p>
+      <nav class="social-links" aria-label="Professional profiles"><a href="https://github.com/horaciocome1">GitHub ↗</a><a href="https://www.linkedin.com/in/horaciocome1">LinkedIn ↗</a><a href="https://horaciocome1.medium.com">Writing on Medium ↗</a></nav>
+      <a class="text-link" href="/resume/">Read my CV online <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span data-copyright-year>2026</span> Horácio Flávio Comé Júnior</p>
+    <a href="https://github.com/horaciocome1/horaciocome1.github.io">View site source on GitHub</a>
+  </div>
+</footer>
+</body>
 </html>
