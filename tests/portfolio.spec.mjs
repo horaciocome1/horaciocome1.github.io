@@ -32,6 +32,18 @@ test('native navigation preserves browser Back and Forward', async ({ page }) =>
 	await expect(page).toHaveURL(/#work$/);
 });
 
+test('respects reduced-motion preferences for native scrolling', async ({ page }) => {
+	await page.emulateMedia({ reducedMotion: 'no-preference' });
+	await page.goto('/');
+	await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'smooth');
+
+	await page.emulateMedia({ reducedMotion: 'reduce' });
+	await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
+
+	await page.emulateMedia({ reducedMotion: 'no-preference' });
+	await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'smooth');
+});
+
 test('skip link and theme toggle support native keyboard activation', async ({ page }) => {
 	await page.goto('/');
 	await page.keyboard.press('Tab');

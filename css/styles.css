@@ -1041,7 +1041,7 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	html {
+	:root {
 		scroll-behavior: auto;
 	}
 }
