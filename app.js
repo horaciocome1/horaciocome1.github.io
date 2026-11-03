@@ -56,6 +56,9 @@ menuToggle?.addEventListener('click', () => {
 	siteNavigation.hidden = !opening;
 	menuToggle.setAttribute('aria-expanded', String(opening));
 	menuToggle.setAttribute('aria-label', opening ? 'Close navigation menu' : 'Open navigation menu');
+	if (opening) {
+		siteNavigation.querySelector('a[href]')?.focus({ preventScroll: true });
+	}
 });
 
 siteNavigation?.addEventListener('click', (event) => {

@@ -189,6 +189,29 @@ test.describe('responsive layout', () => {
 
 test.describe('mobile menu', () => {
 	test.use({ viewport: { width: 390, height: 844 } });
+	for (const key of ['Enter', 'Space']) {
+		test(`reaches menu links with ${key} and forward Tab on every page`, async ({ page }) => {
+			for (const route of pages) {
+				await page.goto(route);
+				const toggle = page.locator('[data-menu-toggle]');
+				const links = page.locator('.site-nav a');
+				await toggle.focus();
+				await page.keyboard.press(key);
+				await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+				await expect(links.first()).toBeFocused();
+				const linkCount = await links.count();
+				for (let index = 1; index < linkCount; index += 1) {
+					await page.keyboard.press('Tab');
+					await expect(links.nth(index)).toBeFocused();
+				}
+				await page.keyboard.press('Escape');
+				await expect(page.locator('.site-nav')).toBeHidden();
+				await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+				await expect(toggle).toBeFocused();
+			}
+		});
+	}
+
 	test('supports Contact, Escape, focus restoration, and native history', async ({ page }) => {
 		await page.goto('/');
 		const toggle = page.locator('[data-menu-toggle]');
