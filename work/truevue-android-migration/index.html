@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrueVUE Cloud Kotlin Android Migration | Horácio Comé</title>
+  <meta name="description" content="A Xamarin-to-Kotlin Android migration: rebuilding multi-database persistence and synchronization, unblocking end-to-end testing, and delivering feature parity.">
+  <meta name="author" content="Horácio Comé">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#090c0b">
+  <link rel="canonical" href="https://horacioco.me/work/truevue-android-migration/">
+  <link rel="sitemap" type="application/xml" href="https://horacioco.me/sitemap.xml">
+  <link rel="me" href="https://github.com/horaciocome1">
+  <link rel="me" href="https://www.linkedin.com/in/horaciocome1">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="TrueVUE Cloud Kotlin Android Migration | Horácio Comé">
+  <meta property="og:description" content="A Xamarin-to-Kotlin Android migration: rebuilding multi-database persistence and synchronization, unblocking end-to-end testing, and delivering feature parity.">
+  <meta property="og:url" content="https://horacioco.me/work/truevue-android-migration/">
+  <meta property="og:site_name" content="Horácio Comé">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://horacioco.me/assets/truevue-migration.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TrueVUE Cloud Kotlin Android Migration | Horácio Comé">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TrueVUE Cloud Kotlin Android Migration | Horácio Comé">
+  <meta name="twitter:description" content="A Xamarin-to-Kotlin Android migration: rebuilding multi-database persistence and synchronization, unblocking end-to-end testing, and delivering feature parity.">
+  <meta name="twitter:image" content="https://horacioco.me/assets/truevue-migration.png">
+  <meta name="twitter:image:alt" content="TrueVUE Cloud Kotlin Android Migration | Horácio Comé">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <script>
+    (() => {
+      let saved = null;
+      try { saved = window.localStorage.getItem('portfolio-theme'); } catch { /* Use the system preference. */ }
+      const theme = saved === 'light' || saved === 'dark' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f8f6ef' : '#090c0b';
+    })();
+  </script>
+  <link rel="stylesheet" href="../../css/reset.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <script src="../../app.js" defer></script>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://horacioco.me/#person",
+      "name": "Horácio Comé",
+      "alternateName": [
+        "Horacio Come",
+        "Horácio Flávio Comé Júnior"
+      ],
+      "url": "https://horacioco.me/",
+      "jobTitle": "Senior Android Engineer",
+      "email": "mailto:mail@horacioco.me",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Belmonte",
+        "addressCountry": "PT"
+      },
+      "knowsAbout": [
+        "Kotlin",
+        "Android",
+        "Android architecture",
+        "Jetpack Compose",
+        "Local persistence",
+        "Data synchronization",
+        "Ktor",
+        "PostgreSQL"
+      ],
+      "sameAs": [
+        "https://github.com/horaciocome1",
+        "https://www.linkedin.com/in/horaciocome1",
+        "https://horaciocome1.medium.com"
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://horacioco.me/work/truevue-android-migration/#page",
+      "url": "https://horacioco.me/work/truevue-android-migration/",
+      "name": "TrueVUE Cloud Kotlin Android Migration | Horácio Comé",
+      "description": "A Xamarin-to-Kotlin Android migration: rebuilding multi-database persistence and synchronization, unblocking end-to-end testing, and delivering feature parity.",
+      "inLanguage": "en",
+      "dateModified": "2026-11-03",
+      "headline": "TrueVUE Cloud Kotlin Android Migration",
+      "author": {
+        "@id": "https://horacioco.me/#person"
+      },
+      "datePublished": "2026-11-03",
+      "image": "https://horacioco.me/assets/truevue-migration.png",
+      "mainEntityOfPage": "https://horacioco.me/work/truevue-android-migration/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://horacioco.me/#website",
+      "url": "https://horacioco.me/",
+      "name": "Horácio Comé",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://horacioco.me/#person"
+      }
+    }
+  ]
+}</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Horácio Comé home"><span class="brand-mark" aria-hidden="true">&gt;_</span>Horácio Comé</a>
+    <nav class="site-nav" id="site-navigation" aria-label="Portfolio" data-navigation>
+      <a href="/#about" data-section-link>About</a>
+<a href="/#work" data-section-link>Work</a>
+<a href="/#experience" data-section-link>Experience</a>
+<a href="/#skills" data-section-link>Skills</a>
+<a href="/#contact" data-section-link>Contact</a>
+
+    </nav>
+    <div class="header-actions">
+      <a class="icon-button" href="mailto:mail@horacioco.me" aria-label="Email Horácio" title="Email Horácio"><svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></a>
+      <button class="icon-button theme-toggle" type="button" aria-label="Use light theme" data-theme-toggle><svg class="icon theme-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"></path></svg><svg class="icon theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.2A8 8 0 0 1 8.8 4 8 8 0 1 0 20 15.2Z"></path></svg></button>
+      <button class="icon-button menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle><svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+    </div>
+  </div>
+</header>
+<main class="case-container" id="main-content" tabindex="-1">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/#work">Selected work</a><span aria-hidden="true">/</span><span aria-current="page">TrueVUE Cloud</span></nav>
+  <article>
+    <header class="case-hero"><p class="eyebrow">Android case study · Retail analytics</p><h1>Moving TrueVUE Cloud from Xamarin to native Android.</h1><p class="case-lead">Technical ownership of a Kotlin migration, with a focus on the persistence, synchronization, and lifecycle work needed to make a device-connected retail app ready for release.</p></header>
+    <dl class="case-facts"><div><dt>Role</dt><dd>Senior Software Engineer<br>Native Android technical owner</dd></div><div><dt>Organization</dt><dd>Johnson Controls / Sensormatic</dd></div><div><dt>Period &amp; status</dt><dd>Jan 2024–present<br>Ongoing native migration</dd></div></dl>
+    <figure class="case-figure"><img src="../../assets/truevue-migration.svg" width="1200" height="630" alt="Xamarin functionality moving to Kotlin Android, supported by persistence and sync, lifecycle, and feature parity work."><figcaption>Public summary of my migration scope. The delivery figure refers to legacy-to-native functionality changes in FY25.</figcaption></figure>
+    <section class="case-section" aria-labelledby="context-title"><h2 id="context-title">The product and the problem</h2><p>TrueVUE Cloud Analytics is a retail product with complex external-device and inventory workflows, including RAIN RFID: radio-frequency identification used to work with tagged items. The Android work involved moving an existing Xamarin application to a native Kotlin foundation while working toward feature parity.</p><p>A central blocker was the local data layer. The existing multi-database persistence and synchronization implementation suffered from cross-instance race conditions, failed or hung transactions, and inconsistent data. Those problems affected the ability to run reliable end-to-end tests.</p></section>
+    <section class="case-section" aria-labelledby="contribution-title"><h2 id="contribution-title">What I owned</h2><p>I was the technical owner of native Android development, collaborating with other developers on the broader architecture and engineering standards. My direct responsibilities went beyond individual screens:</p><ul class="prose-list"><li><strong>Persistence and synchronization.</strong> Independently redesigned the data-intensive, multi-database layer to replace the implementation affected by concurrency and transaction failures.</li><li><strong>Application behavior.</strong> Designed and owned lifecycle management, custom application events, and background processing.</li><li><strong>Feature migration.</strong> Delivered about 90 of 100 legacy-to-native functionality changes in FY25.</li><li><strong>Release readiness.</strong> Worked on MVVM refactoring, code standards, release-build validation, and security-aware build and API-key handling.</li><li><strong>Team delivery.</strong> Mentored and onboarded engineers through code reviews and collaborative debugging across internal and partner teams.</li></ul></section>
+    <section class="case-section" aria-labelledby="decisions-title"><h2 id="decisions-title">Engineering priorities</h2><h3>Fix the foundation that blocked validation</h3><p>The persistence and synchronization work addressed the shared data layer behind the application. Replacing that implementation made it possible to move forward with end-to-end testing. I also resolved a long-standing resource leak.</p><h3>Treat lifecycle and background work as owned systems</h3><p>Alongside the database work, I took responsibility for application lifecycle management, custom events, and background processing. These were explicit areas of ownership within the wider Android migration.</p><h3>Carry migration work through to release validation</h3><p>The work included Cycle Count performance problems, complex device bugs, native Android build validation, and release readiness. Feature parity, maintainability, and the behavior of release builds all mattered to delivery.</p></section>
+    <section class="case-section" aria-labelledby="outcomes-title"><h2 id="outcomes-title">Documented outcomes</h2><ul class="outcome-list"><li><strong>End-to-end testing unblocked</strong>The database and synchronization refactor removed a major blocker to validating complete application flows.</li><li><strong>About 90 of 100 FY25 functionality changes delivered</strong>These were legacy-to-native migration changes, advancing feature parity and release readiness.</li><li><strong>Resource and device issues resolved</strong>Fixed a long-standing resource leak, Cycle Count performance issues, and complex device bugs.</li></ul></section>
+    <section class="case-section" aria-labelledby="stack-title"><h2 id="stack-title">Technical scope</h2><p><strong>Technologies:</strong> Kotlin, Android, MVVM, local persistence, and background processing.</p><p><strong>Responsibilities:</strong> multi-database synchronization, application lifecycle, external-device workflows, migration delivery, code review, and release validation.</p><div class="actions"><a class="button" href="https://www.sensormatic.com/landing/truevue-incloud">Visit TrueVUE product website <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a><a class="button button-primary" href="mailto:mail@horacioco.me">Discuss Android migration <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg></a></div></section>
+  </article>
+  <nav class="case-next" aria-label="More work"><a class="text-link" href="/#work">← All selected work</a><a class="text-link" href="/work/mpesa-android/">Next: M-Pesa Android <svg class="icon " viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span data-copyright-year>2026</span> Horácio Flávio Comé Júnior</p>
+    <a href="https://github.com/horaciocome1/horaciocome1.github.io">View site source on GitHub</a>
+  </div>
+</footer>
+</body>
+</html>

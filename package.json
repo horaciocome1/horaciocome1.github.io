@@ -3,11 +3,12 @@
 	"private": true,
 	"scripts": {
 		"test": "npm run lint && npm run test:e2e",
+		"build:assets": "node scripts/export-assets.mjs",
 		"test:e2e": "playwright test",
 		"lint": "npm run lint:js && npm run lint:css && npm run lint:html",
 		"lint:js": "eslint .",
 		"lint:css": "stylelint \"css/**/*.css\"",
-		"lint:html": "htmlhint \"index.html\" && html-validate \"index.html\""
+		"lint:html": "htmlhint \"index.html\" \"work/**/*.html\" \"resume/**/*.html\" && html-validate \"index.html\" \"work/**/*.html\" \"resume/**/*.html\""
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.12.1",

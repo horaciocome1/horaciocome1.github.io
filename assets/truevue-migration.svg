@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">TrueVUE Cloud native Android migration</title>
+  <desc id="desc">Xamarin to Kotlin Android, with persistence and synchronization, lifecycle management, and feature parity as core areas of work. About 90 of 100 functionality changes delivered in FY25.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto"><path d="M0 0 8 4 0 8" fill="none" stroke="#94edb0" stroke-width="1.5"/></marker></defs>
+  <rect width="1200" height="630" fill="#101b15"/>
+  <path d="M0 50H1200M0 150H1200M0 250H1200M0 350H1200M0 450H1200M0 550H1200M100 0V630M300 0V630M500 0V630M700 0V630M900 0V630M1100 0V630" stroke="#1b2b21"/>
+  <g font-family="Arial, sans-serif">
+    <text x="60" y="77" font-size="24" fill="#94edb0" letter-spacing="3">RETAIL / NATIVE MIGRATION</text>
+    <text x="60" y="145" font-size="54" font-weight="700" fill="#ecf0ed">TrueVUE Cloud</text>
+    <rect x="60" y="201" width="430" height="102" rx="10" fill="#171f1b" stroke="#3b5142"/>
+    <text x="90" y="264" font-size="36" fill="#b4c3b9">Xamarin</text>
+    <path d="M520 252H650" stroke="#94edb0" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="695" y="201" width="445" height="102" rx="10" fill="#1b3324" stroke="#94edb0"/>
+    <text x="725" y="264" font-size="36" font-weight="700" fill="#94edb0">Kotlin / Android</text>
+    <path d="M600 323V350M220 350H980M220 350V376M600 350V376M980 350V376" stroke="#496452" stroke-width="2" fill="none"/>
+    <g fill="#101512" stroke="#3b5142"><rect x="60" y="376" width="320" height="92" rx="10"/><rect x="440" y="376" width="320" height="92" rx="10"/><rect x="820" y="376" width="320" height="92" rx="10"/></g>
+    <g fill="#ecf0ed" font-size="27" text-anchor="middle"><text x="220" y="430">Persistence + sync</text><text x="600" y="430">App lifecycle</text><text x="980" y="430">Feature parity</text></g>
+    <text x="60" y="554" font-size="42" font-weight="700" fill="#94edb0">~90 / 100</text>
+    <text x="340" y="550" font-size="25" fill="#b4c3b9">FY25 functionality changes delivered</text>
+    <text x="60" y="597" font-size="20" fill="#b4c3b9">Horácio Comé · Native Android technical owner</text>
+  </g>
+</svg>

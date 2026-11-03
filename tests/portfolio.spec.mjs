@@ -1,250 +1,240 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
+const pages = ['/', '/work/truevue-android-migration/', '/work/mpesa-android/', '/resume/'];
+
+test('shows the complete portfolio and direct work/contact actions', async ({ page }) => {
 	await page.goto('/');
+	await expect(page).toHaveTitle('Horácio Comé | Senior Android Engineer in Portugal');
+	await expect(page.locator('h1')).toHaveText('Horácio Comé');
+	for (const id of ['about', 'work', 'experience', 'skills', 'contact']) {
+		await expect(page.locator(`#${id}`)).toBeVisible();
+		await expect(page.locator(`#${id}`)).not.toHaveAttribute('inert');
+	}
+	await expect(page.getByRole('link', { name: 'View my work', exact: true })).toHaveAttribute('href', '#work');
+	await expect(page.getByRole('link', { name: 'Email me', exact: true })).toHaveAttribute('href', 'mailto:mail@horacioco.me');
+	await expect(page.locator('.project-card')).toHaveCount(2);
+	await expect(page.locator('.proof-strip')).toContainText('2021–2023');
+	await expect(page.locator('.proof-strip')).toContainText('FY25');
 });
 
-test('loads the profile with one active, focusable slide', async ({ page }) => {
-	await expect(page).toHaveTitle('Horácio Comé | Android Engineer');
-	await expect(page.locator('h1')).toHaveText('Horácio Comé, Android Engineer');
-	await expect(page.locator('#intro-title')).toHaveText('Horácio Comé');
-	await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
-	await expect(page.locator('#intro')).not.toHaveAttribute('aria-hidden', 'true');
-	await expect(page.locator('#work')).toHaveAttribute('aria-hidden', 'true');
-	await expect(page.locator('#work')).toHaveAttribute('inert', '');
-	await expect(page.locator('.work-item h3').first()).toHaveText('TrueVUE Cloud Migration');
+test('native navigation preserves browser Back and Forward', async ({ page }) => {
+	await page.goto('/');
+	await page.locator('.site-nav a[href="#work"]').click();
+	await expect(page).toHaveURL(/#work$/);
+	await page.locator('.site-nav a[href="#skills"]').click();
+	await expect(page).toHaveURL(/#skills$/);
+	await page.goBack();
+	await expect(page).toHaveURL(/#work$/);
+	await page.goBack();
+	await expect(page).toHaveURL(/\/$/);
+	await page.goForward();
+	await expect(page).toHaveURL(/#work$/);
 });
 
-test('loads first-party assets without browser errors', async ({ page }) => {
-	const errors = [];
-	page.on('pageerror', (error) => errors.push(error.message));
-	page.on('response', (response) => {
-		if (response.url().startsWith('http://127.0.0.1:4173') && response.status() >= 400) {
-			errors.push(`${response.status()} ${response.url()}`);
-		}
-	});
-
-	await page.reload();
-	expect(errors).toEqual([]);
-});
-
-test('preserves native keyboard focus and button activation', async ({ page }) => {
+test('skip link and theme toggle support native keyboard activation', async ({ page }) => {
+	await page.goto('/');
 	await page.keyboard.press('Tab');
-	await expect(page.locator('.skip-link')).toBeFocused();
-	await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
-
-	const themeToggle = page.locator('[data-theme-toggle]');
-	await themeToggle.focus();
+	await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+	await page.keyboard.press('Enter');
+	await expect(page.locator('main')).toBeFocused();
+	const toggle = page.locator('[data-theme-toggle]');
+	await toggle.focus();
 	await page.keyboard.press('Space');
-	await expect(themeToggle).toHaveAttribute('aria-checked', 'true');
+	await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+	await page.goto('/work/truevue-android-migration/');
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
 
-test('navigates the carousel and isolates inactive slide content', async ({ page }) => {
-	await page.locator('[data-rail-direction="next"]').click();
-
-	await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
-	await expect(page).toHaveURL(/#work$/);
-	await expect(page.locator('#work')).not.toHaveAttribute('aria-hidden', 'true');
-	await expect(page.locator('#intro')).toHaveAttribute('inert', '');
-	await expect(page.locator('[data-rail-direction="prev"]')).toBeEnabled();
-});
-
-test('settles long carousel jumps back on the first slide', async ({ page }) => {
-	await page.locator('.rail-led').nth(4).click();
-	await page.waitForTimeout(750);
-	await expect(page.locator('[data-rail-count]')).toHaveText('5 / 5');
-
-	await page.locator('.rail-led').first().click();
-	await page.waitForTimeout(750);
-
-	await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
-	await expect(page.locator('#intro')).toHaveCSS('opacity', '1');
-	expect(await page.locator('[data-card-rail]').evaluate((rail) => Math.round(rail.scrollLeft))).toBe(0);
-});
-
-test('returns from slide two to slide one through every navigation control', async ({ page }) => {
-	const expectFirstSlide = async () => {
-		await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
-		await expect(page.locator('#intro')).toHaveCSS('opacity', '1');
-		expect(await page.locator('[data-card-rail]').evaluate((rail) => Math.round(rail.scrollLeft))).toBe(0);
-	};
-
-	await page.locator('[data-rail-direction="next"]').click();
-	await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
-	await page.locator('[data-rail-direction="prev"]').click();
-	await expectFirstSlide();
-
-	await page.locator('[data-rail-direction="next"]').click();
-	await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
-	await page.locator('.rail-led').first().click();
-	await expectFirstSlide();
-
-	await page.locator('[data-rail-direction="next"]').click();
-	await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
-	await page.locator('.tree-link[href="#intro"]').click();
-	await expectFirstSlide();
-});
-
-test('supports scoped arrow navigation from the slide indicators', async ({ page }) => {
-	const indicators = page.locator('.rail-led');
-	await indicators.nth(3).focus();
-	await page.keyboard.press('ArrowRight');
-
-	await expect(indicators.nth(4)).toBeFocused();
-	await expect(indicators.nth(4)).toHaveAttribute('aria-current', 'step');
-	await expect(page.locator('[data-rail-count]')).toHaveText('5 / 5');
-});
-
-test('has no detectable accessibility violations in either theme', async ({ page }) => {
-	let results = await new AxeBuilder({ page }).analyze();
-	expect(results.violations).toEqual([]);
-
+test('uses system theme and tolerates unavailable storage', async ({ page }) => {
+	await page.emulateMedia({ colorScheme: 'light' });
+	await page.addInitScript(() => {
+		Object.defineProperty(window, 'localStorage', { get() { throw new Error('Storage disabled'); } });
+	});
+	await page.goto('/');
+	await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 	await page.locator('[data-theme-toggle]').click();
-	results = await new AxeBuilder({ page }).analyze();
-	expect(results.violations).toEqual([]);
-
-	await page.setViewportSize({ width: 1366, height: 768 });
-	await page.reload();
-	await page.locator('[data-rail-direction="next"]').click();
-	await expect(page.locator('#work')).toHaveAttribute('tabindex', '0');
-	results = await new AxeBuilder({ page }).analyze();
-	expect(results.violations).toEqual([]);
+	await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 });
 
-test('preserves non-carousel fragments and resets an empty carousel hash', async ({ page }) => {
-	await page.goto('/#contact');
-	await expect(page).toHaveURL(/#contact$/);
-	await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
+test('CV download serves a real PDF alongside the accessible online version', async ({ page, request }) => {
+	await page.goto('/');
+	const download = page.getByRole('link', { name: 'Download CV (PDF)', exact: true });
+	await expect(download).toHaveAttribute('download', '');
+	const response = await request.get(await download.getAttribute('href'));
+	expect(response.ok()).toBe(true);
+	expect(response.headers()['content-type']).toContain('application/pdf');
+	expect((await response.body()).subarray(0, 5).toString()).toBe('%PDF-');
+	await page.goto('/resume/');
+	await expect(page.getByRole('heading', { name: 'Professional experience' })).toBeVisible();
+	await expect(page.locator('main')).toContainText('Jan 2024–present');
+});
 
-	await page.goto('/#work');
-	await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
+test('copy email provides feedback and a readable fallback', async ({ page, context }) => {
+	await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+	await page.goto('/');
+	await page.locator('[data-copy-email]').click();
+	await expect(page.getByRole('status')).toHaveText('Email address copied.');
+	expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('mail@horacioco.me');
 	await page.evaluate(() => {
-		window.location.hash = '';
+		navigator.clipboard.writeText = () => Promise.reject(new Error('Clipboard blocked'));
 	});
-	await expect(page.locator('[data-rail-count]')).toHaveText('1 / 5');
+	await page.locator('[data-copy-email]').click();
+	await expect(page.getByRole('status')).toContainText('Select and copy');
+	await expect(page.getByRole('status')).toContainText('mail@horacioco.me');
 });
 
-test('moves focus to the rail when a focused slide is swiped away', async ({ page }) => {
-	await page.locator('[data-rail-direction="next"]').click();
-	await page.waitForTimeout(750);
-	await page.locator('#work a').first().focus();
-	await page.locator('[data-card-rail]').evaluate((rail) => {
-		const target = document.querySelector('#profile');
-		rail.scrollTo({ left: target.offsetLeft, behavior: 'auto' });
-	});
-
-	await expect(page.locator('[data-card-rail]')).toBeFocused();
-	await expect(page.locator('[data-rail-count]')).toHaveText('3 / 5');
-	await expect(page.locator('[data-rail-announcement]')).toContainText('slide 3 of 5');
-});
-
-test('uses natural page height on a short viewport', async ({ page }) => {
-	await page.setViewportSize({ width: 1024, height: 600 });
-	await page.reload();
-
-	const layout = await page.locator('#intro').evaluate((card) => ({
-		overflowY: getComputedStyle(card).overflowY,
-		pageOverflow: getComputedStyle(document.querySelector('main.page')).overflowY,
-	}));
-
-	expect(layout.overflowY).not.toBe('auto');
-	expect(layout.pageOverflow).not.toBe('hidden');
-});
-
-test('keeps window chrome and footer aligned with the workspace outline', async ({ page }) => {
-	await page.setViewportSize({ width: 1366, height: 768 });
-	await page.reload();
-	const lastTreeLink = page.locator('.tree-link').last();
-
-	const layout = await page.evaluate(() => {
-		const workspace = document.querySelector('.workspace').getBoundingClientRect();
-		const windowBar = document.querySelector('.window-bar').getBoundingClientRect();
-		const footer = document.querySelector('.page-footer').getBoundingClientRect();
-
-		return {
-			footerBelowWorkspace: footer.top >= workspace.bottom,
-			windowBarTopGap: Math.round(windowBar.top - workspace.top),
-			windowBarLeftGap: Math.round(windowBar.left - workspace.left),
-		};
-	});
-
-	expect(layout.footerBelowWorkspace).toBe(true);
-	expect(Math.abs(layout.windowBarTopGap - layout.windowBarLeftGap)).toBeLessThanOrEqual(1);
-	expect(await lastTreeLink.evaluate((link) => {
-		const rect = link.getBoundingClientRect();
-		return link.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.bottom - 2));
-	})).toBe(true);
-});
-
-test('prints dark-theme content with readable text', async ({ page }) => {
-	await page.emulateMedia({ media: 'print', colorScheme: 'dark' });
-	await expect(page.locator('#intro-title')).toHaveCSS('color', 'rgb(17, 17, 17)');
-	await expect(page.locator('.summary')).toHaveCSS('color', 'rgb(17, 17, 17)');
-});
-
-test.describe('mobile layout', () => {
-	test.use({ viewport: { width: 390, height: 844 } });
-
-	test('keeps carousel controls visible and moves focus out of the closed menu', async ({ page }) => {
-		await expect(page.locator('.rail-nav')).toBeVisible();
-		await expect(page.locator('[data-rail-direction="next"]')).toBeVisible();
-		const chromeScrim = await page.locator('.page').evaluate((pageElement) => {
-			const style = getComputedStyle(pageElement, '::before');
-			return {
-				backdropFilter: style.backdropFilter,
-				height: Number.parseFloat(style.height),
-			};
+for (const route of pages) {
+	test(`loads assets and resolves internal links on ${route}`, async ({ page, request, baseURL }) => {
+		const errors = [];
+		page.on('pageerror', error => errors.push(error.message));
+		page.on('response', response => {
+			if (response.url().startsWith(baseURL) && response.status() >= 400) errors.push(response.url());
 		});
-		expect(chromeScrim.backdropFilter).toContain('blur');
-		expect(chromeScrim.height).toBeGreaterThan(80);
-		let results = await new AxeBuilder({ page }).analyze();
-		expect(results.violations).toEqual([]);
+		await page.goto(route);
+		await expect(page.locator('h1')).toHaveCount(1);
+		const urls = await page.locator('a[href], img[src], link[rel="stylesheet"], script[src]').evaluateAll(elements => elements.map(element => element.href || element.src));
+		for (const url of [...new Set(urls)]) {
+			const destination = new URL(url);
+			if (destination.origin !== baseURL) continue;
+			const response = await request.get(destination.pathname);
+			expect(response.ok(), url).toBe(true);
+			if (destination.hash) {
+				const content = await response.text();
+				expect(content, url).toContain(`id="${destination.hash.slice(1)}"`);
+			}
+		}
+		const canonical = await page.locator('link[rel="canonical"]').getAttribute('href');
+		expect(canonical).toBe(`https://horacioco.me${route}`);
+		const data = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+		expect(data['@graph'].some(node => node['@type'] === 'Person')).toBe(true);
+		const image = new URL(await page.locator('meta[property="og:image"]').getAttribute('content'));
+		expect((await request.get(image.pathname)).ok()).toBe(true);
+		expect(errors).toEqual([]);
+	});
+}
 
-		await page.locator('[data-menu-toggle]').click();
-		await expect(page.locator('#mobile-menu')).toBeVisible();
-		await expect(page.locator('.session-bar')).toBeHidden();
-		await page.locator('#mobile-menu a[href="#work"]').click();
+test('prints all portfolio sections in document order without clipping', async ({ page }) => {
+	await page.goto('/');
+	await page.emulateMedia({ media: 'print' });
+	const viewportWidth = await page.evaluate(() => innerWidth);
+	const layout = await page.evaluate(() => {
+		return ['about', 'work', 'experience', 'skills', 'contact'].map(id => {
+			const element = document.getElementById(id);
+			const rect = element.getBoundingClientRect();
+			return { id, x: rect.x, y: rect.y, right: rect.right, height: rect.height, color: getComputedStyle(element).color };
+		});
+	});
+	for (let index = 0; index < layout.length; index += 1) {
+		const item = layout[index];
+		expect(item.x).toBeGreaterThanOrEqual(0);
+		expect(item.right).toBeLessThanOrEqual(viewportWidth);
+		expect(item.height).toBeGreaterThan(0);
+		expect(item.color).toBe('rgb(17, 17, 17)');
+		if (index > 0) expect(item.y).toBeGreaterThan(layout[index - 1].y);
+	}
+	await expect(page.locator('.project-grid')).toHaveCSS('display', 'block');
+	await expect(page.locator('.site-header')).toBeHidden();
+	await page.emulateMedia({ media: 'print', colorScheme: 'light' });
+	await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+	await expect(page.locator('.project-card').first()).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+});
 
-		await expect(page.locator('#mobile-menu')).toBeHidden();
-		await expect(page.locator('#work-title')).toBeFocused();
-		await expect(page.locator('[data-rail-count]')).toHaveText('2 / 5');
-		expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+test('enlarged text leaves contact and all content reachable by scrolling', async ({ page }) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await page.goto('/');
+	await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+	const layout = await page.evaluate(() => ({
+		overflow: document.documentElement.scrollWidth > innerWidth,
+		pageHeight: document.documentElement.scrollHeight,
+		bodyOverflow: getComputedStyle(document.body).overflowY,
+	}));
+	expect(layout.overflow).toBe(false);
+	expect(layout.pageHeight).toBeGreaterThan(900);
+	expect(layout.bodyOverflow).not.toBe('hidden');
+	await page.locator('#contact .contact-email').scrollIntoViewIfNeeded();
+	const emailBox = await page.locator('#contact .contact-email').boundingBox();
+	expect(emailBox.y + emailBox.height).toBeLessThanOrEqual(900);
+});
 
-		await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-		await page.locator('[data-menu-toggle]').click();
-		await page.locator('#mobile-menu a[href="#intro"]').click();
-		await expect(page.locator('#intro-title')).toBeFocused();
-		const headingBox = await page.locator('#intro-title').boundingBox();
-		expect(headingBox.y).toBeGreaterThanOrEqual(0);
-		expect(headingBox.y + headingBox.height).toBeLessThanOrEqual(844);
+test.describe('responsive layout', () => {
+	for (const [width, height] of [[320,568],[390,844],[768,1024],[1024,768],[1440,900]]) {
+		test(`fits ${width}px and preserves direct email access`, async ({ page }) => {
+			await page.setViewportSize({ width, height });
+			await page.goto('/');
+			expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+			const email = page.getByRole('link', { name: 'Email me', exact: true });
+			const box = await email.boundingBox();
+			if (width === 390) expect(box.y + box.height).toBeLessThan(height);
+			await page.locator('#contact').scrollIntoViewIfNeeded();
+			const headerEmail = page.getByRole('link', { name: 'Email Horácio', exact: true });
+			const headerBox = await headerEmail.boundingBox();
+			expect(headerBox.y).toBeGreaterThanOrEqual(0);
+			expect(headerBox.height).toBeGreaterThanOrEqual(44);
+		});
+	}
+});
 
-		results = await new AxeBuilder({ page }).analyze();
-		expect(results.violations).toEqual([]);
+test.describe('mobile menu', () => {
+	test.use({ viewport: { width: 390, height: 844 } });
+	test('supports Contact, Escape, focus restoration, and native history', async ({ page }) => {
+		await page.goto('/');
+		const toggle = page.locator('[data-menu-toggle]');
+		await toggle.click();
+		await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+		await page.locator('.site-nav a[href="#contact"]').focus();
+		await page.keyboard.press('Escape');
+		await expect(page.locator('.site-nav')).toBeHidden();
+		await expect(toggle).toBeFocused();
+		await toggle.click();
+		await page.locator('.site-nav a[href="#contact"]').click();
+		await expect(page.locator('.site-nav')).toBeHidden();
+		await expect(page.locator('#contact')).toBeFocused();
+		await expect(page).toHaveURL(/#contact$/);
+		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+		await page.goBack();
+		await expect(page).toHaveURL(/\/$/);
 	});
 
-	test('fits the minimum supported viewport without page-level horizontal overflow', async ({ page }) => {
-		await page.setViewportSize({ width: 320, height: 568 });
-		await page.reload();
-
-		await expect(page.locator('#intro-title')).toBeVisible();
-		await expect(page.locator('.rail-nav')).toBeVisible();
-		expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+	test('keeps fragment headings below the sticky header', async ({ page }) => {
+		await page.emulateMedia({ reducedMotion: 'reduce' });
+		for (const id of ['work','experience','skills','contact','intro','profile','outcomes','style']) {
+			await page.goto(`/#${id}`);
+			await page.waitForTimeout(100);
+			const clearance = await page.evaluate((id) => ({
+				target: document.getElementById(id).getBoundingClientRect().top,
+				header: document.querySelector('.site-header').getBoundingClientRect().bottom,
+			}), id);
+			if (id !== 'intro') expect(clearance.target, id).toBeGreaterThanOrEqual(clearance.header);
+		}
 	});
 });
 
 test.describe('without JavaScript', () => {
-	test.use({ javaScriptEnabled: false });
-
-	test('shows every portfolio section in linear order', async ({ page }) => {
-		await expect(page.locator('.rail-nav')).toBeHidden();
-		await expect(page.locator('[data-theme-toggle]')).toBeHidden();
-		await expect(page.locator('[data-menu-toggle]')).toBeHidden();
-		await expect(page.locator('[data-rail-card]')).toHaveCount(5);
-		await expect(page.locator('#intro')).toBeVisible();
+	test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+	test('shows navigation, projects, contact, and CV without enhancement', async ({ page }) => {
+		await page.goto('/');
+		await expect(page.locator('.site-nav')).toBeVisible();
 		await expect(page.locator('#work')).toBeVisible();
-		await expect(page.locator('#style')).toBeVisible();
-		await expect(page.locator('#work')).not.toHaveAttribute('inert', '');
+		await expect(page.locator('#contact')).toBeVisible();
+		await expect(page.locator('[data-menu-toggle]')).toBeHidden();
+		await expect(page.locator('[data-theme-toggle]')).toBeHidden();
+		expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+		await page.getByRole('link', { name: 'Read TrueVUE case study' }).click();
+		await expect(page.locator('h1')).toContainText('TrueVUE');
 	});
 });
+
+for (const width of [390, 1440]) {
+	for (const theme of ['dark', 'light']) {
+		for (const route of pages) {
+			test(`accessibility: ${route} in ${theme} at ${width}px`, async ({ page }) => {
+				await page.setViewportSize({ width, height: 900 });
+				await page.emulateMedia({ colorScheme: theme });
+				await page.goto(route);
+				const results = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa','best-practice']).analyze();
+				expect(results.violations).toEqual([]);
+			});
+		}
+	}
+}
